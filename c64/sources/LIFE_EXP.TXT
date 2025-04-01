@@ -1,0 +1,388 @@
+0 rem pirates of the spanish main!!
+4 rem 52=Pointer to beginning of string variable area.
+4 rem 56=Pointer to end of BASIC area
+4 poke 52,142 : poke 56,142 : clr : t$ = "" : dim na$(30),n1(30),n2(30),n3(30)
+5 gosub 40 : gosub 19000 : goto 50
+7 vz = va+2*v : poke vz,fn lb(zv) : poke vz+1,zv/kp : return
+8 vz = va+2*v : zv = peek(vz)+kp*peek(vz+1) : return
+10 poke a0,fn lb(f*kp) : poke a1,f : poke a2,fn lb(t*kp) : poke a3,t : poke a4,fn lb(l*kp)
+11 poke a5,l : sys m64k : return
+12 poke a0,f : poke a2,fn lb(t*kp) : poke a3,t : poke a4,fn lb(l*kp)
+13 poke a5,l : sys sb : return
+20 open 15,8,15,"i" : print# 15,"s0:life" : close 15 : save "life",8 : end
+30 poke a1,y : poke a3,dy : poke a4,co : poke a0,x : poke a2,dx : sys wn : return
+40 rem 792=Execution address of non-maskable interrupt service routine
+40 rem 808=Execution address of STOP
+40 rem 56333=Interrupt control and status register.
+40 poke 792,193 : poke 808,234 : poke 56333,129 : return
+41 rem 56333=Interrupt control and status register.
+41 rem 808=Execution address of STOP
+41 rem 792=Execution address of non-maskable interrupt service routine
+41 poke 56333,127 : poke 808,237 : poke 792,71 : return
+50 rem 143=Previous result of RND()
+50 rem 148=Serial bus output cache status
+50 vb = 150*kp : wn = 153.5*kp : cty = 143*kp : cln = 24 : nc = peek(cty+1023)-3 : prs = 148*kp
+55 pty = prs+32 : mp = 155.5*kp : tr = 142*kp : so = 158*kp : lg = 147*kp : dta = 6*kp : sg =-1
+56 gosub 12000 : na$ = "" : i = 0
+57 z = peek(prs+80+i) : na$ = na$+chr$(z) : i = i+1 : if z then 57
+58 t$ = "the further adventureSof the pirate "+na$+"?" : gosub 12500 : x = 5 : y = 7
+59 gosub 8005
+60 nn =-1
+61 nn = nn+1 : read na$(nn),n1(nn),n2(nn),n3(nn) : if nn<>23 then 61
+100 data king&s advis or,269,81,4
+101 data govern or,233,67,3
+102 data lt.govern or,254,63,0
+103 data fleet admiral,249,70,0
+104 data rich banker,253,71,0
+105 data plantati on owner,246,62,3
+106 data wealthy merchant,269,70,1
+107 data general,241,63,0
+108 data sugar planter,251,87,0
+109 data merchant captain,270,72,4
+110 data councilmember,251,62,0
+111 data col on el,245,56,1
+112 data shop owner,253,63,0
+113 data maj or,237,74,4
+114 data tavernkeeper,260,64,2
+115 data sailing master,252,72,5
+116 data sergeant,251,73,1
+117 data bart end er,236,65,3
+118 data sail or,236,65,7
+119 data farm h and,251,60,6
+120 data rogue,219,72,5
+121 data scoundrel,263,75,5
+122 data pauper,247,58,8
+123 data beggar,253,71,2
+150 for i = 0 to 5 : rk(i)= 0 : next i : if peek(prs+18)and 1 then gosub 3000
+190 for i = 0 to 3 : rk = rk+peek(prs+13+i) : next i
+195 age = 25+peek(prs-5) : x = 1 : y = 0 : yr = 1560+20*peek(prs+26)
+197 ha = 1+peek(prs+20)/8-peek(prs+22)/6+peek(prs+6)/8
+198 yr = peek(prs+21)-peek(prs+19) : ha = ha*(25-yr)/20 : if ha<-1 then ha =-1
+200 rk(0)= rk*(fn dp(prs+2)+50*peek(prs+5))*(fn ex(prs+4)+8)/750000*ha
+205 rk(1)=(fn dp(prs+2)+150*peek(prs+5))/4000*ha
+210 rk(2)= fn dp(prs+2)/2000*ha
+215 rk(3)=(rk+2*fn ex(prs+4))/5
+220 rk(4)= fn ex(prs+4)*ha/3
+225 if ha<1 then rk(5)=(ha-1)*5
+230 if peek(prs+18)and 1 then ha = 2 : goto 240
+235 gosub 2000
+240 z = fn dp(prs+2)+50*peek(prs+5)+500*rk+200*fn ex(prs+4)+1000*peek(prs+20)
+245 z = z+1000*peek(pr+6)-1000*peek(pr+22) : pt = int(z/330*(25-yr)/20)
+250 if pt>0 then wh = 19-int(pt/5) : if wh<0 then wh = 0
+255 if pt<= 0 then wh = 20-int(pt/10) : if wh>23 then wh = 23
+260 gosub 1000 : gosub 1400
+280 if peek(prs+18)and 1 then 500
+290 if peek(prs-3)= 4 or(yr+peek(prs+22))/(3-(peek(prs+23)= 4))>= 4 then 400
+300 t$ = "the lure of the sea is stronGand you "
+310 t$ = t$+"may still have Afew good years left in you?will you..?"
+320 t$ = t$+" remain in retirement? return to the pirate life?"
+330 gosub 12500 : x = 3 : y = 3 : gosub 8000 : if c<>5 then 400
+335 poke prs+18,peek(prs+18)or 4 : bf = 192*kp : f$ = "main.chr" : gosub 17800
+340 f$ = "fixmap" : gosub 12900 : v = 22 : zv = nc : gosub 7 : v = 41 : zv = 224 : gosub 7 : gosub 12950
+345 t$ = "game disk side 2" : gosub 900 : if i$<>"2" then 300
+350 f$ = "main" : goto 21900
+400 if pt<0 then 500
+405 t$ = "do you wish to have youRexploits entered into thEpirate hall of fame?"
+410 t$ = t$+" yes? no?" : x = 4 : y = 11 : gosub 8000 : if c = 4 then 500
+420 t$ = "your game save disk" : gosub 900 : if i$<>"3" then 400
+430 open 8,8,8,"fame,s,r" : for i = 0 to 9 : input# 8,nm$(i),cr$(i),pt(i) : next i : close 8
+440 zz = 0 : for i = 0 to 9 : if pt<pt(i)then zz = i+1
+441 next i : if zz>8 then 450
+445 for i = 8 to zz step-1 : nm$(i+1)= nm$(i) : cr$(i+1)= cr$(i) : pt(i+1)= pt(i) : next i
+450 nm$(zz)= na$ : cr$(zz)= na$(wh) : pt(zz)= pt
+460 print "?q        pirate&s hall of fame" : print
+470 for i = 0 to 9 : print "?"; : if i = zz then print "?";
+471 rem 211=Current cursor column.
+471 print i+1 "?. " nm$(i); : poke 211,16 : print cr$(i);
+475 rem 211=Current cursor column.
+475 poke 211,34 : print pt(i) : next i : print "?"
+480 open 15,8,15,"i" : print# 15,"s0:fame" : close 15 : open 8,8,8,"fame,s,w"
+485 rem 13=Carriage return; next character will go in the first column of the following text line. As opposed to traditional ASCII-based system, no LINE FEED character needs to be sent in conjunction with this Carriage return character in the PETSCII system.
+485 i$ = chr$(13) : for i = 0 to 9 : print# 8,nm$(i);i$;cr$(i);i$;pt(i) : next i : close 8
+500 t$ = "do you wish to plaYanother game of pirates? yes? no?"
+510 x = 2 : y = 17 : gosub 8000 : if c = 3 then 600
+515 gosub 22000 : if i$ = "1" then 530
+520 t$ = "game disk side 1" : gosub 900 : if i$<>"1" then 500
+530 bf = 192*kp : f$ = "main.chr" : gosub 17800
+540 f$ = "pick" : goto 21900
+600 t$ = "thank you, good bye?" : x = 8 : y = 8 : gosub 12500 : gosub 8005
+610 goto 610
+900 t$ = "insert "+t$+"? then press trigger?" : x = 4 : y = 20 : gosub 8000 : gosub 22000 : return
+1000 t$ = "your pirating daySare at an end. aS"
+1005 t$ = t$+"a result of youRseafaring exploitS"
+1080 t$ = t$+"you become A"+na$(wh) : if pt<100 then t$ = t$+"?" : goto 1990
+1100 on((pt-100)/20)+1 goto 1110,1111,1112,1113
+1105 t$ = t$+" (prince)?" : goto 1990
+1110 t$ = t$+" (baron)?" : goto 1990
+1111 t$ = t$+" (count)?" : goto 1990
+1112 t$ = t$+" (marquis)?" : goto 1990
+1113 t$ = t$+" (duke)?" : goto 1990
+1400 z = 0 : print "s?q"
+1425 print "?" : mx =-999 : for i = 0 to nn
+1435 if i = wh then print "?";
+1440 rem 214=Current cursor row.
+1440 rem 211=Current cursor column.
+1440 z = int(i/16) : poke 214,i-8*z+7 : print : poke 211,z*18+2
+1445 print na$(i)"?"; : next i
+1450 print : print,"?pirate points:" pt "?/100s";
+1455 rem 53271=Sprite double height register
+1455 rem 53277=Sprite double width register
+1455 rem 53264=Sprite #0-#7 X-coordinates
+1455 rem 53276=Sprite multicolor mode register
+1455 poke 53271,0 : poke 53277,0 : poke 53264,0 : poke 53276,0
+1460 poke sc+7,1 : poke sc+6,10 : poke sc+5,2 : poke sc+4,0
+1465 for i = 4 to 7 : poke sx+i+i,fn lb(n1(wh)) : poke sy+i+i,n2(wh) : poke sp+i,7-i : next i
+1470 rem 53264=Sprite #0-#7 X-coordinates
+1470 poke 53264,0 : if n1(wh)>255 then poke 53264,240
+1475 f$ = "face"+str$(n3(wh)) : bf = 192*kp : gosub 17800
+1480 rem 20=Line number during GOSUB, GOTO and RUN. Mem adr during PEEK, POKE, SYS and WAIT
+1480 rem 53269=Sprite enable register
+1480 x = 20 : y = 0 : f$ = "chr"+str$(wh) : c1 = 0 : c2 = 10 : gosub 8100 : poke 53269,240 : z = 3 : gosub 8700
+1500 z = int(rnd(0)*6)*4 : poke sp+7,z : poke sp+6,z+1 : poke sp+5,z+2 : poke sp+4,z+3
+1510 rem 56320=Port A, keyboard matrix columns and joystick #2.
+1510 for i = 1 to 150/(int(z/6)+1)^2 : if peek(56320)and 16 then next i : goto 1500
+1520 rem 53269=Sprite enable register
+1520 z =-1 : gosub 8700 : gosub 12500 : poke 53269,0 : return
+1990 gosub 12500 : y = 0 : x = 0 : gosub 8005 : return
+2000 rem fame
+2005 if rk = 0 then t$ = "you failed to achieve anYrank" : goto 2030
+2010 t$ = "you achieved the title oF"
+2015 k = 0 : for i = 0 to 3 : z = peek(prs+13+i) : if z = 0 then 2029
+2016 if k then t$ = t$+" anD"
+2017 k = k+1 : t$ = t$+mid$("spanishenglishfrench dutch  ",i*7+1,7)+" "
+2018 on z goto 2020,2021,2022,2023,2024,2025,2026,2027,2028
+2020 t$ = t$+"ensign" : goto 2029
+2021 t$ = t$+"captain" : goto 2029
+2022 t$ = t$+"major" : goto 2029
+2023 t$ = t$+"colonel" : goto 2029
+2024 t$ = t$+"admiral" : goto 2029
+2025 t$ = t$+"baron" : goto 2029
+2026 t$ = t$+"count" : goto 2029
+2027 t$ = t$+"marquis" : goto 2029
+2028 t$ = t$+"duke" : goto 2029
+2029 next i
+2030 t$ = t$+"; making yoU"
+2035 on rk/2.5+1 goto 2040,2041,2042,2043,2044,2045,2046
+2039 t$ = t$+"an extremely important" : goto 2050
+2040 t$ = t$+"an undistinguished" : goto 2050
+2041 t$ = t$+"a little-known" : goto 2050
+2042 t$ = t$+"an average" : goto 2050
+2043 t$ = t$+"a creditable" : goto 2050
+2044 t$ = t$+"a well respected" : goto 2050
+2045 t$ = t$+"a greatly admired" : goto 2050
+2046 t$ = t$+"a very important" : goto 2050
+2050 t$ = t$+" membeRof your community?"
+2090 gosub 12500 : x = 1 : y = 1 : gosub 8000
+2100 z = fn dp(prs+2) : t$ = "you accumulated the suMof"+str$(z*10)+" gold pieceS"
+2105 zz = peek(prs+5) : t$ = t$+"and"+str$(zz*50)+" acres of lanD" : z = z+zz*100
+2110 t$ = t$+"during your career; makinGyou a "
+2115 on sqr(z/500)+1 goto 2120,2121,2122,2123,2124,2125,2126
+2119 t$ = t$+"extremely wealthy man?" : goto 2130
+2120 t$ = t$+"penniless pauper?" : goto 2130
+2121 t$ = t$+"very poor man?" : goto 2130
+2122 t$ = t$+"man of average wealth?" : goto 2130
+2123 t$ = t$+"somewhat properous man?" : goto 2130
+2124 t$ = t$+"rather wealthy man?" : goto 2130
+2125 t$ = t$+"very wealthy man?" : goto 2130
+2126 t$ = t$+"extremely wealthy man?" : goto 2130
+2130 x = 2 : y = 7 : gosub 8000
+2200 z = fn ex(prs+4) : t$ = "your exploits on thEhigh seas leave yoUwith "
+2210 t$ = t$+"a reputation as A"
+2215 on z/4+2 goto 2220,2221,2222,2223,2224,2225
+2219 t$ = t$+"brave; bold and fearless" : goto 2230
+2220 t$ = t$+"cautious and cowardly" : goto 2230
+2221 t$ = t$+"quiet and cautious" : goto 2230
+2222 t$ = t$+"competent and active" : goto 2230
+2223 t$ = t$+"active and daring" : goto 2230
+2224 t$ = t$+"daring and bold" : goto 2230
+2225 t$ = t$+"bold and fearless" : goto 2230
+2230 t$ = t$+"?captain?" : x = 2 : y = 11 : gosub 8000
+2300 t$ = "you retired from privateerinGat the age of"+str$(yr+25)+"?"
+2301 z = peek(prs+20) : if z = 0 then t$ = t$+"you were unable tOfind a bride?" : goto 2310
+2302 t$ = t$+"your bride is " : on z gosub 2304,2305,2306,2307 : goto 2310
+2304 t$ = t$+"a shrewish anDpestersome creature?" : return
+2305 t$ = t$+"a friendly anDattractive woman?" : return
+2306 t$ = t$+"a lovely anDcheerfull girl?" : return
+2307 t$ = t$+"a exciting anDbeautiful creature?" : return
+2310 z = peek(prs+6) : if z = 0 then 2320
+2315 t$ = t$+"you succeeded in rescuing"+str$(z)+"?member" : if z>1 then t$ = t$+"s"
+2316 t$ = t$+" of your family?"
+2320 z = peek(prs+22) : if z = 0 then 2330
+2325 t$ = t$+"you were wounded"+str$(z)+" time" : if z>1 then t$ = t$+"s"
+2326 t$ = t$+"?in the course of your travels?"
+2330 t$ = t$+"you become A" : if ha<-.6 then 2340
+2335 on ha*3+3 goto 2340,2340,2340,2341,2342,2343,2344,2345
+2339 t$ = t$+"happy and fun-loving" : goto 2350
+2340 t$ = t$+"sad and bitter" : goto 2350
+2341 t$ = t$+"lonely and quiet" : goto 2350
+2342 t$ = t$+"quiet and contented" : goto 2350
+2343 t$ = t$+"contented and cheerful" : goto 2350
+2344 t$ = t$+"cheerful and happy" : goto 2350
+2345 t$ = t$+"happy and fun-loving"
+2350 t$ = t$+" man?" : x = 2 : y = 13 : gosub 8000
+2500 return : t$ = "your career prospects?"
+2600 return
+2900 a = 0 : rem find city(a,c$) at cursor
+2910 poke a0,nc : sys wn+6 : z = cty+cln*peek(a0) : if z = a then 2910
+2940 a = z
+2950 rem 23=Pointer to previous expression in string stack
+2950 c$ = "" : for i = a+12 to a+23 : c$ = c$+chr$(peek(i)) : next i : if mo = 2 then return
+2955 z = len(c$) : if right$(c$,1)= " " then c$ = left$(c$,z-1) : goto 2955
+2960 return
+2980 t$ = " press trigger to continuE" : x = 9 : y = 21 : gosub 8000
+2985 poke a0,9 : poke a1,21 : poke a2,28 : poke a3,2 : poke a4,1 : sys wn : return
+2990 rem wait for trigger
+2991 if peek(vb+14)= 1 then 2991
+2992 if peek(vb+14)= 0 then 2992
+2993 poke vb+16,0 : return
+3000 z = fn dp(prs+2) : t$ = "your share of the expedition&Splunder is"+str$(z*10)
+3002 t$ = t$+" gold pieces?your performance in this voyagEleaves you with "
+3010 t$ = t$+"a reputation aSa "
+3015 on z^.7/40+2 goto 3020,3021,3022,3023,3024,3025
+3019 t$ = t$+"brave; bold and fearless" : goto 3030
+3020 t$ = t$+"cautious and cowardly" : goto 3030
+3021 t$ = t$+"quiet and cautious" : goto 3030
+3022 t$ = t$+"competent and active" : goto 3030
+3023 t$ = t$+"active and daring" : goto 3030
+3024 t$ = t$+"daring and bold" : goto 3030
+3025 t$ = t$+"bold and fearless" : goto 3030
+3030 t$ = t$+" captain?" : x = 2 : y = 13 : gosub 8000 : return
+5950 z =-1 : gosub 8700 : v = 64 : zv = dta : gosub 7 : v = 65 : zv = mp : gosub 7 : v = 66 : zv = sp : gosub 7
+5960 v = 68 : zv = so : gosub 7 : v = 69 : zv = a0 : gosub 7 : v = 70 : zv = vb : gosub 7 : v = 71 : zv = wn : gosub 7
+5970 v = 67 : zv = prs+128 : gosub 7 : f = 0 : t = zv/kp : l =.5 : gosub 12 : v = 72 : zv = cty : gosub 7
+5980 v = 73 : zv = df : gosub 7 : v = 74 : zv = pty : gosub 7 : v = 75 : zv = tr : gosub 7 : v = 76 : zv = sa : gosub 7
+5990 v = 77 : zv = prs : gosub 7 : v = 78 : zv = 200*kp : gosub 7 : poke s+18,128 : return
+7999 rem 20=Line number during GOSUB, GOTO and RUN. Mem adr during PEEK, POKE, SYS and WAIT
+7999 x = 20-int(len(t$)/2) : y = 20
+8000 c = 0 : goto 8010 : rem options menu
+8005 c = 1
+8010 rem 131=CHRGET. Machine code routine to read next byte from BASIC program or direct command
+8010 aa = prs+131 : poke aa-1,0 : poke vb+15,1 : t$ = "?"+t$ : sys wn+12 : xl = peek(aa-2) : dx = xl+2
+8020 n = peek(aa-3) : dy = n+1 : co = 2+6*rnd(0) : gosub 30 : poke sp,176 : z = aa+peek(aa-1)
+8030 rem 214=Current cursor row.
+8030 rem 211=Current cursor column.
+8030 poke 214,y : print "q"; : for i = aa+n to aa+1 step-1 : poke 211,x+1 : if z = i then print "?";
+8040 print mid$(t$,peek(i)+2,peek(i-1)-peek(i))
+8045 next i : print "?"; : if c then return
+8050 rem 53269=Sprite enable register
+8050 z = n-z+aa : poke vb+16,x*4+4 : poke vb+17,(y+z)*8+60 : poke 53269,1
+8060 c = int(peek(vb+17)/8)-7-y : if c<z then c = z
+8070 if c>= n then c = n-1
+8071 l = peek(216*kp+(y+c)*40+x+42)and 15 : poke a0,x+1 : poke a1,y+c+1 : poke a2,0 : sys wn+15
+8072 gosub 8090 : if peek(vb+14)then poke vb+16,0 : poke a2,6*sgn(l) : sys wn+15 : return
+8074 poke a2,l : sys wn+15 : gosub 8090 : goto 8060
+8080 poke vb+16,0 : return
+8090 rem 20=Line number during GOSUB, GOTO and RUN. Mem adr during PEEK, POKE, SYS and WAIT
+8090 for i = 0 to 20 : if peek(vb+14)then i = 999
+8091 next i : return
+8099 c1 = 0 : c2 = 10
+8100 rem picture f$
+8110 f = 236 : t = 161 : l = 2 : gosub 10 : f$ = f$+".win" : bf = 232*kp : gosub 17800
+8115 rem 648=High byte of pointer to screen memory for screen AddressExplanations/output
+8115 z = abs(x)+y*40+41 : ax = 216*kp+z : z = peek(648)*kp+z
+8120 poke a0,abs(x) : poke a1,y : poke a2,19-18*(x =-1) : poke a3,15 : poke a4,0 : sys wn
+8130 rem 53282=Extra background color #1
+8130 rem 53283=Extra background color #2
+8130 poke 53282,c1 : poke 53283,c2 : f = 232 : t = 228 : l = 6 : gosub 10 : f = 161 : t = 236 : l = 2 : gosub 10
+8140 poke a0,fn lb(z) : poke a1,z/kp : poke a2,fn lb(ax) : poke a3,ax/kp : sys wn+9
+8150 if x =-1 then x = 0 : z = z+18 : zz = zz+18 : ax = ax+18 : goto 8140
+8160 return
+8590 gosub 8600 : t$ = t$+"?" : return
+8600 t$ = "" : rem load t$ from file f$
+8610 open 8,8,8,f$+".txt,s,r"
+8620 input# 8,f$ : if f$ = "co$" then t$ = t$+co$ : goto 8620
+8622 if f$ = "c$" then t$ = t$+c$ : goto 8620
+8625 z = len(f$) : if f$ = "zz" then t$ = t$+mid$(str$(zz),2)+" " : goto 8620
+8630 if st = 0 and co$<>"x" then t$ = t$+left$(f$,z-1)+chr$(asc(mid$(f$,z))+128) : goto 8620
+8640 t$ = t$+f$ : close 8 : return
+8700 z = 4*kp+abs(z)*100+2*(z<0) : rem music(z)
+8710 poke a0,fn lb(z) : poke a1,z/kp : poke a2,13 : poke a3,64
+8720 z = 2 : poke s+3,z : poke s+10,z : poke s+17,z : poke a4,9 : poke a5,10 : sys vb+9 : return
+12000 rem set up
+12010 rem 56578=Port A data direction register
+12010 rem 56576=Port A, serial bus access
+12010 poke 56578,peek(56578)or 3 : poke 56576,(peek(56576)and 252)or 0
+12020 rem 54272=Voice #1 frequency
+12020 rem 23=Pointer to previous expression in string stack
+12020 s = 54272 : for i = 0 to 23 : poke s+i,0 : next i : poke s+24,15 : poke s+15,10 : poke s+18,129
+12030 rem 53270=Screen control register #2
+12030 rem 53272=Memory setup register.
+12030 rem 648=High byte of pointer to screen memory for screen AddressExplanations/output
+12030 poke 53270,24 : poke 53272,48+8 : poke 648,204 : sys vb
+12040 rem 53248=Sprite #0 X-coordinate
+12040 rem 53249=Sprite #0 Y-coordinate
+12040 rem 53287=Sprite #0 color
+12040 rem 53269=Sprite enable register
+12040 rem 648=High byte of pointer to screen memory for screen AddressExplanations/output
+12040 rem 1016=Datasette buffer
+12040 sx = 53248 : sy = 53249 : sc = 53287 : poke 53269,0 : sp = peek(648)*kp+1016 : return
+12500 rem 648=High byte of pointer to screen memory for screen AddressExplanations/output
+12500 rem 53272=Memory setup register.
+12500 poke vb+13,0 : poke 648,204 : poke 53272,48+8 : rem text screen
+12510 rem 53269=Sprite enable register
+12510 rem 53280=Border color
+12510 rem 53281=Background color
+12510 rem 53282=Extra background color #1
+12510 print "??"; : poke 53269,0 : poke 53280,14 : poke 53281,1 : poke 53282,0 : mo = 1
+12515 rem 53271=Sprite double height register
+12515 rem 53277=Sprite double width register
+12515 rem 53276=Sprite multicolor mode register
+12515 poke 53271,0 : poke 53277,0 : poke 53276,0
+12520 rem 53270=Screen control register #2
+12520 rem 53265=Screen control register #1
+12520 poke 53270,24 : poke 53265,27 : return
+12900 rem 
+12910 rem 53269=Sprite enable register
+12910 f = 0 : t = va/kp : l =.5 : gosub 12 : t =(va+160)/kp : l = 4-160/kp : gosub 12 : poke 53269,0
+12930 sd$ = f$ : f$ = f$+".sid" : bf = 174*kp : gosub 17800 : return
+12950 rem 
+12960 poke a0,0 : poke a1,174 : sys var-24 : return
+12970 poke a0,fn lb(z*kp) : poke a1,z : sys var-24 : return
+13000 rem 256=Buffer for conversion from floating point to string OR Pointers to bytes read with error during datasette AddressExplanations. OR Processor stack. Also used for storing data related to FOR and GOSUB
+13000 vb = 150*256 : poke vb+13,0 : rem set up standard screen
+13010 rem 56578=Port A data direction register
+13010 rem 56576=Port A, serial bus access
+13010 poke 56578,peek(56578)or 3 : poke 56576,(peek(56576)and 252)or 3
+13020 rem 53265=Screen control register #1
+13020 poke 53265,27
+13030 rem 53270=Screen control register #2
+13030 rem 53272=Memory setup register.
+13030 rem 648=High byte of pointer to screen memory for screen AddressExplanations/output
+13030 poke 53270,8 : poke 53272,21 : poke 648,4 : sys vb+3 : poke vb+15,0
+13040 rem 53269=Sprite enable register
+13040 rem 53280=Border color
+13040 rem 53281=Background color
+13040 poke 53269,0 : poke 53280,0 : poke 53281,6 : print "??" : return
+17800 rr = 0 : rem load file
+17805 sys vb+3 : gosub 41 : gosub 19520
+17806 poke a1,fn lb(bf) : poke a2,bf/256
+17810 poke a0,0 : poke a4,213 : poke a5,255 : sys kernel
+17820 gosub 40 : sys vb : return
+17900 rr = 255 : goto 17805
+19000 def fn dp(x)= peek(x)+256*peek(x+1)
+19001 def fn lb(x)=(x-32768)and 255 : def fn ex(x)= peek(x)+256*(peek(x)>127)
+19002 def fn rg(x)=-x*(x>= 0 and x<256)-255*(x>255)
+19003 rem 165=Bit counter during serial bus AddressExplanations/output.
+19003 a0 = 165 : a1 = a0+1 : a2 = a1+1 : a3 = a2+1 : a4 = a3+1 : a5 = a4+1 : a6 = a5+1 : kp = 256 : kk = kp*kp
+19004 rem 41=Auxiliary arithmetical register for division and multiplication
+19004 rem 142=Previous result of RND()
+19004 rem 20=Line number during GOSUB, GOTO and RUN. Mem adr during PEEK, POKE, SYS and WAIT
+19004 k = 149*kp : sb = k+41 : mvb = k+70 : bmvb = k+103 : kernel = k+142 : s64k = k+29 : m64k = k+20
+19010 rem 159=Auxiliary counter for writing file name into datasette buffer.
+19010 var = 159*kp : return
+19520 rem 830=Datasette buffer
+19520 for i = 0 to len(f$)-1 : poke 830+i,asc(mid$(f$,i+1,1)) : next i
+19526 poke a0,0 : poke a1,8 : poke a2,1 : poke a4,186 : poke a5,255 : sys ke
+19528 poke a0,len(f$) : poke a1,62 : poke a2,3 : poke a4,189 : poke a5,255 : sys ke : return
+21900 sys vb+3 : print "??qqeload " chr$(34);f$;chr$(34)",8,1qqqqqrun"
+21910 print,"?one moment please...se";
+21920 rem 631=Keyboard buffer
+21920 rem 632=Keyboard buffer
+21920 rem 198=Length of keyboard buffer
+21920 gosub 41 : poke 631,13 : poke 632,13 : poke 198,3 : new
+22000 rem get disk id
+22060 rem 53269=Sprite enable register
+22060 rr = peek(53269) : poke 53269,0 : open 15,8,15,"i0:" : open 2,8,2,"#1"
+22070 print# 15,"u1";2;0;18;0 : print# 15,"b-p";2;163 : get# 2,i$ : close 2 : close 15
+22090 rem 53269=Sprite enable register
+22090 poke 53269,rr : return
