@@ -1,0 +1,1264 @@
+  0     rem pirat                                                                                                                               
+  1     if peek(38181)<>133 then load "64ksuppor                                                                                                
+        t",8,1                                                                                                                                  
+  4     poke 52,142                                                                                                                             
+  :     poke 56,142                                                                                                                             
+  :     clr                                                                                                                                     
+  :     t$ = ""                                                                                                                                 
+  5     gosub 40                                                                                                                                
+  :     gosub 19000                                                                                                                             
+  :     goto 50                                                                                                                                 
+                                                                                                                                                
+  7     vz = va+2*v                             240:3, 240:6, 940:5, 1300:5, 130                                                                
+                                                0:8, 1410:8, 5950:4, 5950:7, 595                                                                
+                                                0:10, 5960:2, 5960:5, 5960:8, 59                                                                
+                                                60:11, 5970:2, 5970:9, 5980:2, 5                                                                
+                                                980:5, 5980:8, 5980:11, 5990:2,                                                                 
+                                                5990:5                                                                                          
+  :     poke vz,fn lb(zv)                                                                                                                       
+  :     poke vz+1,zv/kp                                                                                                                         
+  :     return                                                                                                                                  
+                                                                                                                                                
+  8     vz = va+2*v                                                                                                                             
+  :     zv = peek(vz)+kp*peek(vz+1)                                                                                                             
+  :     return                                                                                                                                  
+                                                                                                                                                
+  10    poke a0,fn lb(f*kp)                     1010:3, 1085:3, 1490:3, 1490:6,                                                                 
+                                                1490:9, 8110:3, 8130:5, 8130:9,                                                                 
+                                                14025:6                                                                                         
+  :     poke a1,f                                                                                                                               
+  :     poke a2,fn lb(t*kp)                                                                                                                     
+  :     poke a3,t                                                                                                                               
+  :     poke a4,fn lb(l*kp)                                                                                                                     
+  11    poke a5,l                                                                                                                               
+  :     sys m64k                                                                                                                                
+  :     return                                                                                                                                  
+                                                                                                                                                
+  12    poke a0,f                               90:3, 90:6, 5970:6, 12910:3                                                                     
+  :     poke a2,fn lb(t*kp)                                                                                                                     
+  :     poke a3,t                                                                                                                               
+  :     poke a4,fn lb(l*kp)                                                                                                                     
+  13    poke a5,l                                                                                                                               
+  :     sys sb                                                                                                                                  
+  :     return                                                                                                                                  
+                                                                                                                                                
+  30    poke a1,y                               140:4, 3100:6, 8020:1, 14205:5,                                                                 
+                                                14215:5                                                                                         
+  :     poke a3,dy                                                                                                                              
+  :     poke a4,co                                                                                                                              
+  :     poke a0,x                                                                                                                               
+  :     poke a2,dx                                                                                                                              
+  :     sys wn                                                                                                                                  
+  :     return                                                                                                                                  
+                                                                                                                                                
+  40    poke 792,193                            5:0, 17790:3                                                                                    
+  :     poke 808,234                                                                                                                            
+  :     poke 56333,129                                                                                                                          
+  :     return                                                                                                                                  
+                                                                                                                                                
+  41    poke 56333,127                          17790:1, 21920:0                                                                                
+  :     poke 808,237                                                                                                                            
+  :     poke 792,71                                                                                                                             
+  :     return                                                                                                                                  
+                                                                                                                                                
+  50    vb = 150*kp                             5:2                                                                                             
+  :     wn = 153.5*kp                                                                                                                           
+  :     cty = 143*kp                                                                                                                            
+  :     cln = 24                                                                                                                                
+  :     prs = 148*kp                                                                                                                            
+  55    pty = prs+32                                                                                                                            
+  :     mp = 155.5*kp                                                                                                                           
+  :     tr = 142*kp                                                                                                                             
+  :     so = 158*kp                                                                                                                             
+  :     lg = 147*kp                                                                                                                             
+  :     dta = 6*kp                                                                                                                              
+                                                                                                                                                
+  80    gosub 14000                             1127:4                                                                                          
+  90    f = 0                                                                                                                                   
+  :     t = tr/kp                                                                                                                               
+  :     l = 1                                                                                                                                   
+  :     gosub 12                                                                                                                                
+  :     t = lg/kp                                                                                                                               
+  :     l = 2                                                                                                                                   
+  :     gosub 12                                                                                                                                
+  :     day = int(rnd(0)*150)+50                                                                                                                
+  95    f$ = "fixmap"                                                                                                                           
+  :     gosub 12900                                                                                                                             
+  :     gosub 12500                                                                                                                             
+                                                                                                                                                
+  100   t$ = "welcome to 'pirates!'?return with 225:3                                                                                           
+        us to thEgolden age of"                                                                                                                 
+  105   t$ = t$+" buccaneerinGon the spanish mai                                                                                                
+        n?"                                                                                                                                     
+  106   t$ = t$+"do you wish to..? start a new c                                                                                                
+        areer?"                                                                                                                                 
+  107   t$ = t$+" continue a saved game? command                                                                                                
+         a famous expedition?"                                                                                                                  
+  110   sys vb                                                                                                                                  
+  :     x = 5                                                                                                                                   
+  :     y = 3                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  :     gosub 12500                                                                                                                             
+  :     if c = 5 then 750                                                                                                                       
+  120   if c = 6 then 200                                                                                                                       
+  140   x = 1                                                                                                                                   
+  :     y = 1                                                                                                                                   
+  :     dx = 37                                                                                                                                 
+  :     dy = 15                                                                                                                                 
+  :     gosub 30                                                                                                                                
+  :     print "sqq]]select an expedition..."                                                                                                    
+  :     print                                                                                                                                   
+  150   print,"?battle of san juan de ulua"                                                                                                     
+  :     print,"?  (john hawkins, 1569)"                                                                                                         
+  151   print,"?the silver train ambush"                                                                                                        
+  :     print,"?  (francis drake, 1573)"                                                                                                        
+  152   print,"?the treasure fleet"                                                                                                             
+  :     print,"?  (piet heyn, 1628)"                                                                                                            
+  153   rem print,"?the pirates of tortuga"                                                                                                     
+  :     print,"?  (pierre le grand, 1635)"                                                                                                      
+  154   print,"?the sack of maracaibo"                                                                                                          
+  :     print,"?  (l&ollonais, 1666)"                                                                                                           
+  155   print,"?the king&s pirate"                                                                                                              
+  :     print,"?  (henry morgan, 1671)"                                                                                                         
+  156   print,"?the last expedition"                                                                                                            
+  :     print,"?  (baron de pointis, 1697)"                                                                                                     
+  160   x = 9                                                                                                                                   
+  :     n = 14                                                                                                                                  
+  :     z = 12                                                                                                                                  
+  :     aa = 0                                                                                                                                  
+  :     gosub 8050                                                                                                                              
+  :     print "?"                                                                                                                               
+  165   rem t$="scenario not available?"                                                                                                        
+  :     gosub7999                                                                                                                               
+  :     goto100                                                                                                                                 
+  170   poke prs,int(c/2)+16                                                                                                                    
+  :     poke prs+18,1                                                                                                                           
+  :     sn =-1                                                                                                                                  
+  :     goto 850                                                                                                                                
+                                                                                                                                                
+  200   gosub 12500                             120:0                                                                                           
+                                                                                                                                                
+  205   t$ = "insert game save disKthen..? press206:1                                                                                           
+         the trigger?"                                                                                                                          
+  :     x = 8                                                                                                                                   
+  :     y = 6                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  206   gosub 22000                                                                                                                             
+  :     if i$<>"3" then 205                                                                                                                     
+  208   gosub 2000                                                                                                                              
+  210   t$ = "which saved game dOyou wish to con                                                                                                
+        tinue? saved game 1? saved game 2?"                                                                                                     
+  211   t$ = t$+" saved game 3? saved game 4?"                                                                                                  
+  :     x = 8                                                                                                                                   
+  :     y = 3                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  220   poke pty,0                                                                                                                              
+  :     f$ = "savegame"+str$(c-1)                                                                                                               
+  :     bf = tr                                                                                                                                 
+  :     gosub 17790                                                                                                                             
+  225   if peek(pty)= 0 then t$ = "file not foun                                                                                                
+        D"                                                                                                                                      
+  :     gosub 7999                                                                                                                              
+  :     gosub 295                                                                                                                               
+  :     goto 100                                                                                                                                
+  230   nc = peek(cty+1023)-3                                                                                                                   
+  :     sn = peek(prs+26)                                                                                                                       
+  :     poke prs+18,peek(prs+18)or 2                                                                                                            
+  240   df = peek(prs-3)                                                                                                                        
+  :     v = 22                                                                                                                                  
+  :     zv = nc                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     v = 41                                                                                                                                  
+  :     zv = fd                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     gosub 5950                                                                                                                              
+  :     gosub 12950                                                                                                                             
+                                                                                                                                                
+  250   t$ = "load completed, noWinsert "       265:1                                                                                           
+  260   t$ = t$+"game disk (side 1)?then..? pres                                                                                                
+        s the trigger?"                                                                                                                         
+  :     x = 8                                                                                                                                   
+  :     y = 6                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  265   gosub 22000                                                                                                                             
+  :     if i$<>"1" then 250                                                                                                                     
+  270   bf = dta                                                                                                                                
+  :     f$ = "main"+str$(sn)+".dta"                                                                                                             
+  :     gosub 17790                                                                                                                             
+  290   goto 990                                                                                                                                
+                                                                                                                                                
+  295   t$ = "insert game disk (side 1)? then pr225:2, 296:1                                                                                    
+        ess the trigger?"                                                                                                                       
+  :     x = 4                                                                                                                                   
+  :     y = 6                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  296   gosub 22000                                                                                                                             
+  :     if i$<>"1" then 295                                                                                                                     
+  297   return                                                                                                                                  
+                                                                                                                                                
+  750   t$ = "do you wish to select Aspecial his110:5                                                                                           
+        torical period? no, thanks? yes?"                                                                                                       
+  760   x = 2                                                                                                                                   
+  :     y = 1                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  :     if c<>3 then sn = 5                                                                                                                     
+  :     goto 820                                                                                                                                
+  800   t$ = "select a time period?"                                                                                                            
+  802   t$ = t$+" the silver empire (1560)?"                                                                                                    
+  803   t$ = t$+" merchants and smugglers (1600)                                                                                                
+        ?"                                                                                                                                      
+  804   t$ = t$+" the new colonists (1620)?"                                                                                                    
+  805   t$ = t$+" war for profit (1640)?"                                                                                                       
+  806   t$ = t$+" the buccaneer heroes (1660)?"                                                                                                 
+  807   t$ = t$+" pirates& sunset (1680)?"                                                                                                      
+  810   x = 2                                                                                                                                   
+  :     y = 1                                                                                                                                   
+  :     dc = 4                                                                                                                                  
+  :     gosub 8000                                                                                                                              
+  :     sn = c+(c = 1)                                                                                                                          
+  :     dc = 0                                                                                                                                  
+                                                                                                                                                
+  820   bf = cty                                760:4                                                                                           
+  :     f$ = "cities"+str$(sn)+".dta"                                                                                                           
+  :     gosub 17790                                                                                                                             
+  :     nc = peek(cty+1023)-3                                                                                                                   
+  825   bf = dta                                                                                                                                
+  :     f$ = "main"+str$(sn)+".dta"                                                                                                             
+  :     gosub 17790                                                                                                                             
+  :     poke prs+26,sn                                                                                                                          
+                                                                                                                                                
+  850   gosub 1000                              170:3                                                                                           
+  :     dy = day-360*int(day/360)                                                                                                               
+  :     poke prs+19,day/360                                                                                                                     
+  851   z = int(dy/15)-18+2*(sn and 1)                                                                                                          
+  :     if z<0 then z = z+24                                                                                                                    
+  852   poke prs+27,z                                                                                                                           
+  :     poke prs-1,255                                                                                                                          
+  :     if z<15 then poke prs-1,peek(cty+1008+z)                                                                                                
+  855   z = int(dy/15)-6+2*(sn and 1)                                                                                                           
+  :     if z<0 then z = z+24                                                                                                                    
+  856   poke prs+28,z                                                                                                                           
+  :     poke prs-2,255                                                                                                                          
+  :     if z<15 then poke prs-2,peek(cty+992+z)                                                                                                 
+  860   poke prs+29,rnd(0)*4                                                                                                                    
+  900   rem                                                                                                                                     
+  905   y = day/6                                                                                                                               
+  :     for i = 0 to 2                                                                                                                          
+  :     for j = i+1 to 3                                                                                                                        
+  :     z = fn ex(prs+64+i*4+j)                                                                                                                 
+  :     x = peek(lg)                                                                                                                            
+  :     poke lg,x+1                                                                                                                             
+  910   a = lg+x*4+1                                                                                                                            
+  :     poke a,fn lb(y)                                                                                                                         
+  :     poke a+1,y/kp                                                                                                                           
+  :     if z<>0 then poke a+2,17+z                                                                                                              
+  :     poke a+3,i*4+j                                                                                                                          
+  911   if z = 0 then poke a+2,rnd(0)*5+11                                                                                                      
+  :     poke a+3,rnd(0)*nc                                                                                                                      
+  913   y = y+day/6                                                                                                                             
+  :     next j                                                                                                                                  
+  :     next i                                                                                                                                  
+  :     poke pty,1                                                                                                                              
+  915   t$ = "what is your family name?(smith, j                                                                                                
+        ones, etc.)???"                                                                                                                         
+  :     x = 5                                                                                                                                   
+  :     y = 10                                                                                                                                  
+  :     gosub 8005                                                                                                                              
+  920   poke 214,12                                                                                                                             
+  :     print,                                                                                                                                  
+  :     print "qqyour name?";                                                                                                                   
+  :     x = 21                                                                                                                                  
+  :     y = 13                                                                                                                                  
+  :     na$ = ""                                                                                                                                
+  :     gosub 1900                                                                                                                              
+                                                                                                                                                
+  922   z = len(na$)                            922:2                                                                                           
+  :     if right$(na$,1)= " " then na$ = left$(n                                                                                                
+        a$,z-1)                                                                                                                                 
+  :     goto 922                                                                                                                                
+  923   if na$ = "" then na$ = "incognito"                                                                                                      
+  925   for i = 1 to len(na$)                                                                                                                   
+  :     poke prs+79+i,asc(mid$(na$,i))                                                                                                          
+  :     next i                                                                                                                                  
+  930   t$ = "mr. "+na$+", whicHdifficulty leveL                                                                                                
+        will you choose? apprenticE journeymaN                                                                                                  
+  931   t$ = t$+" adventureR swashbuckleR"                                                                                                      
+  :     x = 12                                                                                                                                  
+  :     y = 13                                                                                                                                  
+  :     gosub 8000                                                                                                                              
+  :     df = c-3                                                                                                                                
+  :     poke prs+24,df                                                                                                                          
+  932   t$ = "which special abilitYdo you have?                                                                                                 
+        skill at fencinG skill at navigatioN"                                                                                                   
+  933   t$ = t$+" skill at gunnerY wit and charM                                                                                                
+         skill at medicinE"                                                                                                                     
+  934   x = 7                                                                                                                                   
+  :     y = 15                                                                                                                                  
+  :     gosub 8000                                                                                                                              
+  :     poke prs+23,c-1                                                                                                                         
+  940   f$ = "hist"                                                                                                                             
+  :     gosub 12900                                                                                                                             
+  :     gosub 5950                                                                                                                              
+  :     v = 22                                                                                                                                  
+  :     zv = nc                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     gosub 12950                                                                                                                             
+  942   gosub 1100                                                                                                                              
+                                                                                                                                                
+  990   t$ = "insert game disk side 2?then..? pr290:0, 991:1                                                                                    
+        ess the trigger?"                                                                                                                       
+  :     x = 4                                                                                                                                   
+  :     y = 6                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  991   gosub 22000                                                                                                                             
+  :     if i$<>"2" then 990                                                                                                                     
+  995   sys vb+3                                                                                                                                
+  :     poke 53269,0                                                                                                                            
+  :     goto 21900                                                                                                                              
+                                                                                                                                                
+  1000  rem                                     850:0                                                                                           
+  1010  f = 192                                                                                                                                 
+  :     t = 228                                                                                                                                 
+  :     l = 8                                                                                                                                   
+  :     gosub 10                                                                                                                                
+  :     bf = 192*kp                                                                                                                             
+  :     f$ = "chars.dta"                                                                                                                        
+  :     gosub 17790                                                                                                                             
+  1012  if sn<0 then c = 0                                                                                                                      
+  :     t(c)= peek(prs)                                                                                                                         
+  :     goto 1040                                                                                                                               
+  1015  z = 0                                                                                                                                   
+  :     gosub 8700                                                                                                                              
+  :     if sn>1 then for i = 5 to sn*4                                                                                                          
+  :     read x                                                                                                                                  
+  :     next i                                                                                                                                  
+  1020  for i = 1 to 4                                                                                                                          
+  :     read x                                                                                                                                  
+  :     t(i)= x                                                                                                                                 
+  :     next i                                                                                                                                  
+  1021  if sn<6 then for i = sn*4 to 23                                                                                                         
+  :     read x                                                                                                                                  
+  :     next i                                                                                                                                  
+  1025  t$ = "are you an?"                                                                                                                      
+  :     for i = 1 to 4                                                                                                                          
+  :     a = bf+t(i)*80-80                                                                                                                       
+  :     if t(i)= 0 then 1035                                                                                                                    
+  1030  t$ = t$+" "                                                                                                                             
+  :     for j = 0 to 19                                                                                                                         
+  :     t$ = t$+chr$(peek(a+j))                                                                                                                 
+  :     next j                                                                                                                                  
+  :     t$ = t$+"?"                                                                                                                             
+                                                                                                                                                
+  1035  next i                                  1025:3                                                                                          
+  :     x = 10                                                                                                                                  
+  :     y = 5                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  :     poke prs,t(c)                                                                                                                           
+                                                                                                                                                
+  1040  poke 53269,0                            1012:2                                                                                          
+  :     a = bf+t(c)*80-80                                                                                                                       
+  :     for j = 0 to 12                                                                                                                         
+  :     poke pty+3+j,peek(a+20+j)                                                                                                               
+  :     next j                                                                                                                                  
+  1045  for j = 0 to 6                                                                                                                          
+  :     poke pty+20+j,peek(a+33+j)                                                                                                              
+  :     next j                                                                                                                                  
+  1050  for j = 0 to 3                                                                                                                          
+  :     poke prs+8+j,peek(a+48+j)                                                                                                               
+  :     next j                                                                                                                                  
+  :     poke prs+12,255                                                                                                                         
+  :     poke prs+2,20                                                                                                                           
+  1052  for j = 0 to 3                                                                                                                          
+  :     poke prs+13+j,peek(a+52+j)                                                                                                              
+  :     next j                                                                                                                                  
+  1055  for j = 0 to 15                                                                                                                         
+  :     poke prs+64+j,peek(a+56+j)                                                                                                              
+  :     next j                                                                                                                                  
+  1060  i = int(rnd(0)*3)*2                                                                                                                     
+  :     for j = 0 to 1                                                                                                                          
+  :     poke pty+1+j,peek(a+40+i+j)                                                                                                             
+  :     next j                                                                                                                                  
+  1070  if sn>= 0 then 1080                                                                                                                     
+  1071  sn = peek(a+72)                                                                                                                         
+  :     poke prs+26,sn                                                                                                                          
+  :     day = peek(a+73)+kp*peek(a+74)                                                                                                          
+  1072  poke prs+7,peek(a+75)                                                                                                                   
+  1075  bf = cty                                                                                                                                
+  :     f$ = "cities"+str$(sn)+".dta"                                                                                                           
+  :     gosub 17790                                                                                                                             
+  :     nc = peek(cty+1023)-3                                                                                                                   
+  1076  bf = dta                                                                                                                                
+  :     f$ = "main"+str$(sn)+".dta"                                                                                                             
+  :     gosub 17790                                                                                                                             
+                                                                                                                                                
+  1080  poke vb+16,peek(pty+1)                  1070:0                                                                                          
+  :     poke vb+17,peek(pty+2)+48                                                                                                               
+  :     poke a0,nc                                                                                                                              
+  :     sys wn+6                                                                                                                                
+  1081  cc = peek(a0)                                                                                                                           
+  :     poke prs+25,cc                                                                                                                          
+  1082  a = cty+cc*cln                                                                                                                          
+  :     poke a,peek(a)or 128                                                                                                                    
+  1085  f = 228                                                                                                                                 
+  :     t = 192                                                                                                                                 
+  :     l = 8                                                                                                                                   
+  :     gosub 10                                                                                                                                
+  :     return                                                                                                                                  
+                                                                                                                                                
+  1099  data 1,2,7,0,4,5,6,7,8,9,3,7,8,10,6,7,12                                                                                                
+        ,13,14,7,15,13,11,16                                                                                                                    
+                                                                                                                                                
+  1100  rem                                     942:0                                                                                           
+  1104  gosub 1250                                                                                                                              
+  :     c = peek(prs)                                                                                                                           
+  :     if c>16 then for i = 0 to 23                                                                                                            
+  :     read x                                                                                                                                  
+  :     next i                                                                                                                                  
+  :     goto 1110                                                                                                                               
+  1106  for i = 1 to c                                                                                                                          
+                                                                                                                                                
+  1107  read x                                  1107:1                                                                                          
+  :     if x<>-1 then 1107                                                                                                                      
+  1108  next i                                                                                                                                  
+  :     gosub 12500                                                                                                                             
+                                                                                                                                                
+  1110  read aa                                 1104:5, 1110:3, 1130:0, 1185:3                                                                  
+  :     zz = abs(aa)                                                                                                                            
+  :     if zz = 97 then gosub 1400                                                                                                              
+  :     goto 1110                                                                                                                               
+  1111  if abs(aa+.5)<1 then return                                                                                                             
+                                                                                                                                                
+  1114  if zz = 50 then f$ = "tavern"                                                                                                           
+  :     c1 = 0                                                                                                                                  
+  :     c2 = 10                                                                                                                                 
+  :     goto 1180                                                                                                                               
+  1115  if zz = 51 then f$ = "governor"                                                                                                         
+  :     c1 = 0                                                                                                                                  
+  :     c2 = 10                                                                                                                                 
+  :     goto 1180                                                                                                                               
+  1116  if zz = 52 then f$ = "ship 4"                                                                                                           
+  :     c1 = 14                                                                                                                                 
+  :     c2 = 9                                                                                                                                  
+  :     goto 1180                                                                                                                               
+  1117  if zz = 53 then f$ = "happy"                                                                                                            
+  :     c1 = 0                                                                                                                                  
+  :     c2 = 10                                                                                                                                 
+  :     goto 1180                                                                                                                               
+  1118  if zz = 54 then f$ = "man"                                                                                                              
+  :     c1 = 0                                                                                                                                  
+  :     c2 = 10                                                                                                                                 
+  :     goto 1180                                                                                                                               
+  1119  if zz = 55 then f$ = "you"                                                                                                              
+  :     c1 = 0                                                                                                                                  
+  :     c2 = 10                                                                                                                                 
+  :     goto 1180                                                                                                                               
+  1120  x = 0                                                                                                                                   
+  :     y = 0                                                                                                                                   
+  :     ff = zz-1                                                                                                                               
+  :     gosub 8590                                                                                                                              
+  1121  if zz = 41 then x = 3                                                                                                                   
+  :     y = 9                                                                                                                                   
+  1122  if zz = 42 then x = 12                                                                                                                  
+  :     y = 12                                                                                                                                  
+  1123  if aa<0 then gosub 12500                                                                                                                
+  1125  gosub 8000                                                                                                                              
+  :     if zz = 41 then poke prs,c+c                                                                                                            
+  1126  if zz = 42 then poke prs,peek(prs)+c                                                                                                    
+  :     gosub 1300                                                                                                                              
+  1127  if zz = 6 and c = 7 then poke 192*kp+16,                                                                                                
+        0                                                                                                                                       
+  :     restore                                                                                                                                 
+  :     gosub 14200                                                                                                                             
+  :     sys vb+3                                                                                                                                
+  :     goto 80                                                                                                                                 
+  1130  goto 1110                                                                                                                               
+                                                                                                                                                
+  1180  if aa<0 then gosub 12500                1114:3, 1115:3, 1116:3, 1117:3,                                                                 
+                                                1118:3, 1119:3                                                                                  
+  1185  x = 10                                                                                                                                  
+  :     y = 9                                                                                                                                   
+  :     gosub 8100                                                                                                                              
+  :     goto 1110                                                                                                                               
+  1189  data-40,41,42,-52,3,0,4,97,5,6,0,-1                                                                                                     
+  1190  data 1,51,2,41,42,-3,53,0,4,97,5,6,0,-1                                                                                                 
+  1191  data 7,50,8,41,42,-3,52,35,97,-53,23,0,1                                                                                                
+        1,12,97,5,6,-1                                                                                                                          
+  1192  data 36,55,37,41,42,-3,52,26,97,-51,17,0                                                                                                
+        ,28,97,29,6,-1                                                                                                                          
+  1193  data 7,50,8,41,42,-9,97,-54,10,0,11,12,9                                                                                                
+        7,5,6,-1                                                                                                                                
+  1194  data 21,51,22,14,41,42,-20,97,-54,23,0,1                                                                                                
+        6,12,97,5,6,-1                                                                                                                          
+  1195  data 34,51,2,41,42,-52,35,97,-53,27,0,4,                                                                                                
+        97,5,6,-1                                                                                                                               
+  1196  data 32,53,33,41,42,-15,97,-54,23,0,20,9                                                                                                
+        7,29,6,-1                                                                                                                               
+  1197  data 13,53,14,41,42,-15,97,-51,17,0,16,1                                                                                                
+        2,97,5,6,-1                                                                                                                             
+  1198  data 31,51,2,41,42,-9,97,-54,10,0,4,97,5                                                                                                
+        ,6,-1                                                                                                                                   
+  1199  data 36,55,37,41,42,-52,3,26,97,-51,17,0                                                                                                
+        ,28,97,29,6,-1                                                                                                                          
+  1200  data 39,51,8,41,42,-35,97,-53,23,0,4,97,                                                                                                
+        5,6,-1                                                                                                                                  
+  1201  data 18,55,19,41,42,-20,97,-54,10,0,16,2                                                                                                
+        0,97,5,6,-1                                                                                                                             
+  1202  data 38,55,37,41,42,-26,97,-51,17,0,12,9                                                                                                
+        7,29,6,-1                                                                                                                               
+  1203  data 7,50,37,41,42,-26,97,-52,27,0,28,97                                                                                                
+        ,29,6,-1                                                                                                                                
+  1204  data 21,51,22,14,41,42,-15,97,-54,23,0,2                                                                                                
+        0,97,5,6,-1                                                                                                                             
+  1205  data 24,51,25,41,42,-26,97,-53,27,0,28,9                                                                                                
+        7,29,6,-1                                                                                                                               
+                                                                                                                                                
+  1250  a = cty+cln*(peek(prs+128)and 63)       1104:0                                                                                          
+  :     gosub 2950                                                                                                                              
+  1260  co$ = "the silver train "                                                                                                               
+  :     if peek(prs+128)and 64 then co$ = "the t                                                                                                
+        reasure fleet "                                                                                                                         
+  1270  c$ = c$+" in"+str$(1560+sn*20)+"; mr. "+                                                                                                
+        na$                                                                                                                                     
+  :     return                                                                                                                                  
+                                                                                                                                                
+  1300  f$ = "fixmap"                           1126:1                                                                                          
+  :     gosub 12900                                                                                                                             
+  :     gosub 5950                                                                                                                              
+  :     v = 22                                                                                                                                  
+  :     zv = nc                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     v = 41                                                                                                                                  
+  :     zv = fd                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  1310  goto 12980                                                                                                                              
+                                                                                                                                                
+  1400  print "e??"                             1110:2                                                                                          
+  :     poke vb+15,0                                                                                                                            
+  :     f$ = "deck"                                                                                                                             
+  :     x =-1                                                                                                                                   
+  :     y = 2                                                                                                                                   
+  :     c1 = 11                                                                                                                                 
+  :     c2 = 9                                                                                                                                  
+  :     gosub 8100                                                                                                                              
+  1405  poke 214,17                                                                                                                             
+  :     print                                                                                                                                   
+  :     print "?   enemy captain","?    mr. " na                                                                                                
+        $;                                                                                                                                      
+  1410  c1 = 248                                                                                                                                
+  :     c2 = 192                                                                                                                                
+  :     gosub 1490                                                                                                                              
+  :     c1 = 252                                                                                                                                
+  :     c2 = 196                                                                                                                                
+  :     gosub 1490                                                                                                                              
+  :     v = 73                                                                                                                                  
+  :     zv = peek(prs-3)                                                                                                                        
+  :     gosub 7                                                                                                                                 
+                                                                                                                                                
+  1420  z = 195.75                              1420:2                                                                                          
+  :     gosub 12970                                                                                                                             
+  :     if peek(a0)= 4 then 1420                                                                                                                
+  1430  gosub 1490                                                                                                                              
+  :     c1 = 248                                                                                                                                
+  :     c2 = 192                                                                                                                                
+  :     gosub 1490                                                                                                                              
+  :     poke 53269,0                                                                                                                            
+  :     poke 53276,0                                                                                                                            
+  :     poke 53277,0                                                                                                                            
+  1440  return                                                                                                                                  
+                                                                                                                                                
+  1490  f = c1                                  1410:2, 1410:5, 1430:0, 1430:3                                                                  
+  :     t = 232                                                                                                                                 
+  :     l = 4                                                                                                                                   
+  :     gosub 10                                                                                                                                
+  :     f = c2                                                                                                                                  
+  :     t = c1                                                                                                                                  
+  :     gosub 10                                                                                                                                
+  :     f = 232                                                                                                                                 
+  :     t = c2                                                                                                                                  
+  :     gosub 10                                                                                                                                
+  :     return                                                                                                                                  
+                                                                                                                                                
+  1900  poke 198,0                              920:6, 1910:1, 1920:1, 1930:0                                                                   
+  :     poke 214,y                                                                                                                              
+  :     print                                                                                                                                   
+  :     poke 211,x                                                                                                                              
+  :     print na$ " "                                                                                                                           
+                                                                                                                                                
+  1905  get a$                                  1905:1                                                                                          
+  :     if a$ = "" then 1905                                                                                                                    
+  1909  z = asc(a$)                                                                                                                             
+  1910  if(z = 20 or z = 157)and len(na$)>0 then                                                                                                
+         na$ = mid$(na$,1,len(na$)-1)                                                                                                           
+  :     goto 1900                                                                                                                               
+  1920  if z<96 and z>31 and(z<>34)and len(na$)<                                                                                                
+        9 then na$ = na$+a$                                                                                                                     
+  :     goto 1900                                                                                                                               
+  1930  if z<>13 then 1900                                                                                                                      
+  1940  return                                                                                                                                  
+                                                                                                                                                
+  2000  sys vb+3                                208:0                                                                                           
+  :     poke 214,12                                                                                                                             
+  :     print                                                                                                                                   
+  :     print "saved games:"                                                                                                                    
+  2010  for k = 1 to 4                                                                                                                          
+  :     poke pty,0                                                                                                                              
+  :     f$ = "savegame"+str$(k)                                                                                                                 
+  :     bf = tr                                                                                                                                 
+  :     gosub 17790                                                                                                                             
+  :     na$ = ""                                                                                                                                
+  :     i = 0                                                                                                                                   
+  2015  if peek(pty)= 0 then print "?" k "?. no                                                                                                 
+        data"                                                                                                                                   
+  :     print                                                                                                                                   
+  :     goto 2090                                                                                                                               
+                                                                                                                                                
+  2020  z = peek(prs+80+i)                      2020:3                                                                                          
+  :     if z then na$ = na$+chr$(z)                                                                                                             
+  :     i = i+1                                                                                                                                 
+  :     goto 2020                                                                                                                               
+  2030  sn = peek(prs+26)                                                                                                                       
+  :     day = fn dp(lg+4*peek(lg)-3)                                                                                                            
+  :     yr = int(day/360)                                                                                                                       
+  :     df = peek(prs-3)                                                                                                                        
+  2040  f$ = mid$("apprenticejourneymanadventure                                                                                                
+        rswashbuclr",df*10+1,10)                                                                                                                
+  2050  a = cty+peek(prs+25)*cln                                                                                                                
+  :     gosub 2950                                                                                                                              
+  2080  print "?" k "?. " na$ " in " c$ "](" 156                                                                                                
+        0+sn*20+yr ")"                                                                                                                          
+  2085  print,"?" f$ ":" fn dp(prs+2)*10 "gold p                                                                                                
+        cs."                                                                                                                                    
+                                                                                                                                                
+  2090  next k                                  2015:2                                                                                          
+  :     print "?"                                                                                                                               
+  :     sys vb                                                                                                                                  
+  :     return                                                                                                                                  
+                                                                                                                                                
+  2900  a = 0                                                                                                                                   
+  :     rem find city(a,c$) at cursor                                                                                                           
+                                                                                                                                                
+  2910  poke a0,nc                              2910:3                                                                                          
+  :     sys wn+6                                                                                                                                
+  :     z = cty+cln*peek(a0)                                                                                                                    
+  :     if z = a then 2910                                                                                                                      
+  2940  a = z                                                                                                                                   
+                                                                                                                                                
+  2950  c$ = ""                                 1250:1, 2050:1, 3105:1, 3185:2                                                                  
+  :     for i = a+12 to a+23                                                                                                                    
+  :     c$ = c$+chr$(peek(i))                                                                                                                   
+  :     next i                                                                                                                                  
+  :     if mo = 2 then return                                                                                                                   
+                                                                                                                                                
+  2955  z = len(c$)                             2955:2                                                                                          
+  :     if right$(c$,1)= " " then c$ = left$(c$,                                                                                                
+        z-1)                                                                                                                                    
+  :     goto 2955                                                                                                                               
+  2960  return                                                                                                                                  
+                                                                                                                                                
+  2980  t$ = " press trigger to continuE"       2994:0                                                                                          
+  :     x = 9                                                                                                                                   
+  :     y = 21                                                                                                                                  
+  :     gosub 8000                                                                                                                              
+  2985  poke a0,9                                                                                                                               
+  :     poke a1,21                                                                                                                              
+  :     poke a2,28                                                                                                                              
+  :     poke a3,2                                                                                                                               
+  :     poke a4,co                                                                                                                              
+  :     sys wn                                                                                                                                  
+  :     return                                                                                                                                  
+                                                                                                                                                
+  2990  rem                                     8050:4                                                                                          
+                                                                                                                                                
+  2991  rr = 0                                  2991:1                                                                                          
+  :     if peek(vb+14)= 1 then 2991                                                                                                             
+                                                                                                                                                
+  2992  rr = rr+1                               2992:1                                                                                          
+  :     if peek(vb+14)= 0 then on rr/199+1 goto                                                                                                 
+        2992,2994                                                                                                                               
+                                                                                                                                                
+  2993  poke vb+16,0                            2994:1                                                                                          
+  :     return                                                                                                                                  
+                                                                                                                                                
+  2994  gosub 2980                              2992:1                                                                                          
+  :     goto 2993                                                                                                                               
+                                                                                                                                                
+  3000  if peek(prs+18)then print "?qqqqqqqq","l21900:0                                                                                         
+        oading more pirates!"                                                                                                                   
+  :     return                                                                                                                                  
+                                                                                                                                                
+  3005  for i = 0 to 3                                                                                                                          
+  :     t(i)=-1                                                                                                                                 
+  :     y(i)= 999                                                                                                                               
+  :     next i                                                                                                                                  
+  3010  a = cty+cc*cln                                                                                                                          
+  :     x = peek(a+1)                                                                                                                           
+  :     y = peek(a+2)                                                                                                                           
+  3020  for i = 0 to nc                                                                                                                         
+  :     a = cty+i*cln                                                                                                                           
+  :     zz = peek(a+3)                                                                                                                          
+  :     if i = cc then 3050                                                                                                                     
+  3030  z = abs(x-peek(a+1))+abs(y-peek(a+2))                                                                                                   
+  3040  if z<y(zz)then y(zz)= z                                                                                                                 
+  :     t(zz)= i                                                                                                                                
+                                                                                                                                                
+  3050  next i                                  3020:3                                                                                          
+  3100  print "?"                                                                                                                               
+  :     x = 7                                                                                                                                   
+  :     y = 6                                                                                                                                   
+  :     dx = 32                                                                                                                                 
+  :     dy = 18                                                                                                                                 
+  :     co = 4                                                                                                                                  
+  :     gosub 30                                                                                                                                
+  :     x$ = "]]]]]]]]"                                                                                                                         
+  3105  a = cty+cc*cln                                                                                                                          
+  :     gosub 2950                                                                                                                              
+  :     zz = peek(a+3)                                                                                                                          
+  :     k = zz                                                                                                                                  
+  :     gosub 3900                                                                                                                              
+  :     x = peek(a+1)                                                                                                                           
+  :     y = peek(a+2)                                                                                                                           
+  3110  print "qqqqqq" x$ "the sailing master ta                                                                                                
+        kes you"                                                                                                                                
+  3115  print x$ "aside.  %here in ?" c$ "?,"                                                                                                   
+  3120  print x$ "you&ll probably be wantin& to"                                                                                                
+  3125  print x$ "see the " a$ " governor and"                                                                                                  
+  3130  print x$ "visit a tavern or two. the"                                                                                                   
+  3135  print x$ "men&ll be anxious for plunder"                                                                                                
+  3140  print x$ "and adventure so we needn&t"                                                                                                  
+  3145  print x$ "be sightseein& for too long.";                                                                                                
+  3150  rem print"]]]i&ve taken liberty of check                                                                                                
+        in&"                                                                                                                                    
+  3155  rem print"]]]the map and making some not                                                                                                
+        es.";                                                                                                                                   
+  3180  for k = 0 to 3                                                                                                                          
+  :     if k = peek(cty+cln*cc+3)or t(k)=-1 then                                                                                                
+         3199                                                                                                                                   
+  3185  print                                                                                                                                   
+  :     a = cty+t(k)*cln                                                                                                                        
+  :     gosub 2950                                                                                                                              
+  :     gosub 3900                                                                                                                              
+  :     gosub 3200                                                                                                                              
+  3190  print x$ "the closest " a$ " city is"                                                                                                   
+  3195  print x$ "?" c$ "? which lies " co$                                                                                                     
+  3196  print x$ "days sailing to the ?" t$ "?."                                                                                                
+        ;                                                                                                                                       
+                                                                                                                                                
+  3199  next k                                  3180:1                                                                                          
+  :     print "'";                                                                                                                              
+  :     return                                                                                                                                  
+                                                                                                                                                
+  3200  dx = peek(a+1)-x                        3185:4                                                                                          
+  :     dy = peek(a+2)-y                                                                                                                        
+  3210  if abs(dx)>2*abs(dy)then dy = 0                                                                                                         
+  3215  if abs(dy)>2*abs(dx)then dx = 0                                                                                                         
+  3220  t$ = ""                                                                                                                                 
+  :     if dy<0 then t$ = "north"                                                                                                               
+  3225  if dy>0 then t$ = "south"                                                                                                               
+  3230  if dx<0 then t$ = t$+"west"                                                                                                             
+  3235  if dx>0 then t$ = t$+"east"                                                                                                             
+  3240  z = abs(dx)+abs(dy)                                                                                                                     
+  :     co$ = "a few"                                                                                                                           
+  :     if z>30 then co$ = "many"                                                                                                               
+  3250  return                                                                                                                                  
+                                                                                                                                                
+  3900  a$ = mid$("?spanish??english??french???d3105:4, 3185:3                                                                                  
+        utch???",k*9+1,9)                                                                                                                       
+  :     return                                                                                                                                  
+                                                                                                                                                
+  5950  z =-1                                   240:7, 940:2, 1300:2                                                                            
+  :     gosub 8700                                                                                                                              
+  :     v = 64                                                                                                                                  
+  :     zv = dta                                                                                                                                
+  :     gosub 7                                                                                                                                 
+  :     v = 65                                                                                                                                  
+  :     zv = mp                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     v = 66                                                                                                                                  
+  :     zv = sp                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  5960  v = 68                                                                                                                                  
+  :     zv = so                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     v = 69                                                                                                                                  
+  :     zv = a0                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     v = 70                                                                                                                                  
+  :     zv = vb                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     v = 71                                                                                                                                  
+  :     zv = wn                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  5970  v = 67                                                                                                                                  
+  :     zv = prs+128                                                                                                                            
+  :     gosub 7                                                                                                                                 
+  :     f = 0                                                                                                                                   
+  :     t = zv/kp                                                                                                                               
+  :     l =.5                                                                                                                                   
+  :     gosub 12                                                                                                                                
+  :     v = 72                                                                                                                                  
+  :     zv = cty                                                                                                                                
+  :     gosub 7                                                                                                                                 
+  5980  v = 73                                                                                                                                  
+  :     zv = df                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     v = 74                                                                                                                                  
+  :     zv = pty                                                                                                                                
+  :     gosub 7                                                                                                                                 
+  :     v = 75                                                                                                                                  
+  :     zv = tr                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  :     v = 76                                                                                                                                  
+  :     zv = sa                                                                                                                                 
+  :     gosub 7                                                                                                                                 
+  5990  v = 77                                                                                                                                  
+  :     zv = prs                                                                                                                                
+  :     gosub 7                                                                                                                                 
+  :     v = 78                                                                                                                                  
+  :     zv = 192*kp                                                                                                                             
+  :     gosub 7                                                                                                                                 
+  :     poke s+18,128                                                                                                                           
+  5995  z = peek(54299)                                                                                                                         
+  :     for i = 0 to 100                                                                                                                        
+  :     if peek(54299)= z then next i                                                                                                           
+  :     goto 6000                                                                                                                               
+  5996  return                                                                                                                                  
+                                                                                                                                                
+  6000  t$ = "the random number generatoRin this5995:3                                                                                          
+         computer (sid chip -?"                                                                                                                 
+  6010  t$ = t$+"osc. 3) is not functioninGcorre                                                                                                
+        ctly.  program will noT"                                                                                                                
+  6020  t$ = t$+"work unless this is repaired?"                                                                                                 
+  6030  gosub 12500                                                                                                                             
+  :     poke 53280,10                                                                                                                           
+  :     x = 3                                                                                                                                   
+  :     y = 6                                                                                                                                   
+  :     gosub 8000                                                                                                                              
+  :     return                                                                                                                                  
+                                                                                                                                                
+  7999  x = 20-int(len(t$)/2)                   225:1                                                                                           
+  :     y = 20                                                                                                                                  
+                                                                                                                                                
+  8000  c = 0                                   110:3, 205:3, 211:3, 260:3, 295:                                                                
+                                                3, 760:2, 810:3, 931:3, 934:2, 9                                                                
+                                                90:3, 1035:3, 1125:0, 2980:3, 60                                                                
+                                                30:4                                                                                            
+  :     goto 8010                                                                                                                               
+  :     rem                                                                                                                                     
+                                                                                                                                                
+  8005  c = 1                                   915:3                                                                                           
+                                                                                                                                                
+  8010  aa = prs+131                            8000:1                                                                                          
+  :     poke aa-1,0                                                                                                                             
+  :     poke vb+15,1                                                                                                                            
+  :     t$ = "?"+t$                                                                                                                             
+  :     sys wn+12                                                                                                                               
+  :     xl = peek(aa-2)                                                                                                                         
+  :     dx = xl+2                                                                                                                               
+  8015  if x = 0 then x = int((40-dx)/2)                                                                                                        
+  8016  n = peek(aa-3)                                                                                                                          
+  :     dy = n+1                                                                                                                                
+  :     if y = 0 then y = abs(int((9-dy)/2))                                                                                                    
+  8017  if(x+dx)>39 then dx = 39-x                                                                                                              
+  8018  if(y+dy)>24 then dy = 24-y                                                                                                              
+  8020  co = 2+6*rnd(0)                                                                                                                         
+  :     gosub 30                                                                                                                                
+  :     poke sp,176                                                                                                                             
+  :     z = aa+peek(aa-1)                                                                                                                       
+  8030  poke 214,y                                                                                                                              
+  :     print "q";                                                                                                                              
+  :     for i = aa+n to aa+1 step-1                                                                                                             
+  :     poke 211,x+1                                                                                                                            
+  :     if z = i then print "?";                                                                                                                
+  8040  print mid$(t$,peek(i)+2,peek(i-1)-peek(i                                                                                                
+        ))                                                                                                                                      
+  8045  next i                                                                                                                                  
+  :     print "?";                                                                                                                              
+  :     if c then return                                                                                                                        
+                                                                                                                                                
+  8050  z = n-z+aa                              160:4                                                                                           
+  :     poke vb+16,x*4+4                                                                                                                        
+  :     poke vb+17,(y+z+dc)*8+60                                                                                                                
+  :     poke 53269,1                                                                                                                            
+  :     if z = n then 2990                                                                                                                      
+                                                                                                                                                
+  8060  c = int(peek(vb+17)/8)-7-y              8074:3                                                                                          
+  :     if c<z then c = z                                                                                                                       
+  8070  if c>= n then c = n-1                                                                                                                   
+  8071  l = peek(216*kp+(y+c)*40+x+42)and 15                                                                                                    
+  :     poke a0,x+1                                                                                                                             
+  :     poke a1,y+c+1                                                                                                                           
+  :     poke a2,0                                                                                                                               
+  :     sys wn+15                                                                                                                               
+  8072  gosub 8090                                                                                                                              
+  :     if peek(vb+14)then poke vb+16,0                                                                                                         
+  :     poke a2,6*sgn(l)                                                                                                                        
+  :     sys wn+15                                                                                                                               
+  :     return                                                                                                                                  
+                                                                                                                                                
+  8074  poke a2,l                                                                                                                               
+  :     sys wn+15                                                                                                                               
+  :     gosub 8090                                                                                                                              
+  :     goto 8060                                                                                                                               
+  8080  poke vb+16,0                                                                                                                            
+  :     return                                                                                                                                  
+                                                                                                                                                
+  8090  for i = 0 to 20                         8072:0, 8074:2                                                                                  
+  :     if peek(vb+14)then i = 999                                                                                                              
+  8091  next i                                                                                                                                  
+  :     return                                                                                                                                  
+                                                                                                                                                
+  8099  c1 = 0                                                                                                                                  
+  :     c2 = 10                                                                                                                                 
+                                                                                                                                                
+  8100  rem                                     1185:2, 1400:7                                                                                  
+  8110  f = 236                                                                                                                                 
+  :     t = 161                                                                                                                                 
+  :     l = 2                                                                                                                                   
+  :     gosub 10                                                                                                                                
+  :     f$ = f$+".win"                                                                                                                          
+  :     bf = 232*kp                                                                                                                             
+  :     gosub 17790                                                                                                                             
+  8115  z = abs(x)+y*40+41                                                                                                                      
+  :     ax = 216*kp+z                                                                                                                           
+  :     z = peek(648)*kp+z                                                                                                                      
+  8120  poke a0,abs(x)                                                                                                                          
+  :     poke a1,y                                                                                                                               
+  :     poke a2,19-18*(x =-1)                                                                                                                   
+  :     poke a3,15                                                                                                                              
+  :     poke a4,0                                                                                                                               
+  :     sys wn                                                                                                                                  
+  8130  poke 53282,c1                                                                                                                           
+  :     poke 53283,c2                                                                                                                           
+  :     f = 232                                                                                                                                 
+  :     t = 228                                                                                                                                 
+  :     l = 6                                                                                                                                   
+  :     gosub 10                                                                                                                                
+  :     f = 161                                                                                                                                 
+  :     t = 236                                                                                                                                 
+  :     l = 2                                                                                                                                   
+  :     gosub 10                                                                                                                                
+                                                                                                                                                
+  8140  poke a0,fn lb(z)                        8150:4                                                                                          
+  :     poke a1,z/kp                                                                                                                            
+  :     poke a2,fn lb(ax)                                                                                                                       
+  :     poke a3,ax/kp                                                                                                                           
+  :     sys wn+9                                                                                                                                
+  8150  if x =-1 then x = 0                                                                                                                     
+  :     z = z+18                                                                                                                                
+  :     zz = zz+18                                                                                                                              
+  :     ax = ax+18                                                                                                                              
+  :     goto 8140                                                                                                                               
+  8160  return                                                                                                                                  
+                                                                                                                                                
+  8590  rem                                     1120:3                                                                                          
+  8600  t$ = ""                                                                                                                                 
+  :     rem                                                                                                                                     
+  8610  rr = peek(53269)                                                                                                                        
+  :     poke 53269,0                                                                                                                            
+  :     open 15,8,15                                                                                                                            
+  :     open 5,8,5,"#"                                                                                                                          
+  8615  print# 15,"b-r:";5;0;int((ff+1)/21)+1;ff                                                                                                
+        +1-int((ff+1)/21)*21                                                                                                                    
+                                                                                                                                                
+  8620  input# 5,f$                             8620:2, 8622:1, 8625:2, 8630:1                                                                  
+  :     if f$ = "co$" then t$ = t$+co$                                                                                                          
+  :     goto 8620                                                                                                                               
+  8622  if f$ = "c$" then t$ = t$+c$                                                                                                            
+  :     goto 8620                                                                                                                               
+  8625  z = len(f$)                                                                                                                             
+  :     if f$ = "zz" then t$ = t$+mid$(str$(zz),                                                                                                
+        2)+" "                                                                                                                                  
+  :     goto 8620                                                                                                                               
+  8630  t$ = t$+left$(f$,z-1)+chr$(asc(mid$(f$,z                                                                                                
+        ))+128)                                                                                                                                 
+  :     if st = 0 then 8620                                                                                                                     
+  8640  close 5                                                                                                                                 
+  :     close 15                                                                                                                                
+  :     poke 53269,rr                                                                                                                           
+  :     return                                                                                                                                  
+                                                                                                                                                
+  8700  z = 4*kp+abs(z)*100+2*(z<0)             1015:1, 5950:1                                                                                  
+  :     rem music(z)                                                                                                                            
+  8710  poke a0,fn lb(z)                                                                                                                        
+  :     poke a1,z/kp                                                                                                                            
+  :     poke a2,13                                                                                                                              
+  :     poke a3,64                                                                                                                              
+  8720  z = 2                                                                                                                                   
+  :     poke s+3,z                                                                                                                              
+  :     poke s+10,z                                                                                                                             
+  :     poke s+17,z                                                                                                                             
+  :     poke a4,9                                                                                                                               
+  :     poke a5,10                                                                                                                              
+  :     sys vb+9                                                                                                                                
+  :     return                                                                                                                                  
+                                                                                                                                                
+  12000 rem                                     14010:1, 14200:1                                                                                
+  12010 poke 56578,peek(56578)or 3                                                                                                              
+  :     poke 56576,(peek(56576)and 252)or 0                                                                                                     
+  12020 s = 54272                                                                                                                               
+  :     for i = 0 to 23                                                                                                                         
+  :     poke s+i,0                                                                                                                              
+  :     next i                                                                                                                                  
+  :     poke s+24,15                                                                                                                            
+  :     poke s+15,10                                                                                                                            
+  :     poke s+18,129                                                                                                                           
+  12030 poke 53270,24                                                                                                                           
+  :     poke 53272,48+8                                                                                                                         
+  :     poke 648,204                                                                                                                            
+  :     poke vb+15,0                                                                                                                            
+  12040 sx = 53248                                                                                                                              
+  :     sy = 53249                                                                                                                              
+  :     sc = 53287                                                                                                                              
+  :     poke 53269,0                                                                                                                            
+  :     sp = peek(648)*kp+1016                                                                                                                  
+  12050 for i = 0 to 7                                                                                                                          
+  :     poke sp+i,176                                                                                                                           
+  :     poke sx+i+i,0                                                                                                                           
+  :     poke sy+i+i,0                                                                                                                           
+  :     next i                                                                                                                                  
+  :     return                                                                                                                                  
+                                                                                                                                                
+  12500 poke 648,204                            95:2, 110:4, 200:0, 1108:1, 1123                                                                
+                                                :0, 1180:0, 6030:0, 14200:2                                                                     
+  :     poke 53272,48+8                                                                                                                         
+  :     rem text screen                                                                                                                         
+  12510 print "??";                                                                                                                             
+  :     poke 53269,0                                                                                                                            
+  :     poke 53280,14                                                                                                                           
+  :     poke 53281,1                                                                                                                            
+  :     poke 53282,0                                                                                                                            
+  :     mo = 1                                                                                                                                  
+  12515 poke 53271,0                                                                                                                            
+  :     poke 53277,0                                                                                                                            
+  :     poke 53276,0                                                                                                                            
+  12520 poke 53270,24                                                                                                                           
+  :     poke 53265,27                                                                                                                           
+  :     return                                                                                                                                  
+                                                                                                                                                
+  12900 rem                                     95:1, 940:1, 1300:1                                                                             
+  12910 f = 0                                                                                                                                   
+  :     t = va/kp                                                                                                                               
+  :     l = 4                                                                                                                                   
+  :     gosub 12                                                                                                                                
+  :     poke 53269,0                                                                                                                            
+  12920 f$ = f$+".sid"                                                                                                                          
+  :     bf = 174*kp                                                                                                                             
+                                                                                                                                                
+  12930 gosub 17790                             12930:1                                                                                         
+  :     if(st and 191)<>0 then 12930                                                                                                            
+  12940 return                                                                                                                                  
+                                                                                                                                                
+  12950 rem                                     240:8, 940:6                                                                                    
+  12960 poke a0,0                                                                                                                               
+  :     poke a1,174                                                                                                                             
+  :     sys var-24                                                                                                                              
+  :     return                                                                                                                                  
+                                                                                                                                                
+  12970 poke a0,fn lb(z*kp)                     1420:1                                                                                          
+  :     poke a1,z                                                                                                                               
+  :     sys var-24                                                                                                                              
+  :     return                                                                                                                                  
+                                                                                                                                                
+  12980 poke a0,0                               1310:0                                                                                          
+  :     poke a1,174                                                                                                                             
+  :     sys var-24                                                                                                                              
+  :     if peek(prs-3)<4 then return                                                                                                            
+                                                                                                                                                
+  12985 read x                                  12985:1                                                                                         
+  :     if x then 12985                                                                                                                         
+  12989 return                                                                                                                                  
+                                                                                                                                                
+  13000 vb = 150*256                                                                                                                            
+  :     poke vb+13,0                                                                                                                            
+  :     rem set up standard screen                                                                                                              
+  13010 poke 56578,peek(56578)or 3                                                                                                              
+  :     poke 56576,(peek(56576)and 252)or 3                                                                                                     
+  13020 poke 53265,27                                                                                                                           
+  13030 poke 53270,8                                                                                                                            
+  :     poke 53272,21                                                                                                                           
+  :     poke 648,4                                                                                                                              
+  :     sys vb+3                                                                                                                                
+  13040 poke 53269,0                                                                                                                            
+  :     poke 53280,0                                                                                                                            
+  :     poke 53281,6                                                                                                                            
+  :     print "??"                                                                                                                              
+  :     return                                                                                                                                  
+                                                                                                                                                
+  14000 rem                                     80:0                                                                                            
+  14010 bf = 192*kp                                                                                                                             
+  :     if peek(bf+16)= 170 then gosub 12000                                                                                                    
+  :     return                                                                                                                                  
+                                                                                                                                                
+  14012 bf = 192*kp                                                                                                                             
+  :     f$ = "main.chr"                                                                                                                         
+  :     gosub 17800                                                                                                                             
+  :     f$ = "main"                                                                                                                             
+  :     gosub 17900                                                                                                                             
+  14015 bf = 224*kp                                                                                                                             
+  :     f$ = "main.fnt"                                                                                                                         
+  :     gosub 17800                                                                                                                             
+  14025 bf = 240*kp                                                                                                                             
+  :     f$ = "sword.pic"                                                                                                                        
+  :     gosub 17800                                                                                                                             
+  :     f = 240                                                                                                                                 
+  :     t = 208                                                                                                                                 
+  :     l = 16                                                                                                                                  
+  :     gosub 10                                                                                                                                
+  14035 bf = 158*kp                                                                                                                             
+  :     f$ = "3dships.pic0"                                                                                                                     
+  :     gosub 17800                                                                                                                             
+  14036 bf = 240*kp                                                                                                                             
+  :     f$ = "3dships.pic1"                                                                                                                     
+  :     gosub 17800                                                                                                                             
+  14070 f$ = "music"+str$((peek(162)and 1)+1)+".                                                                                                
+        dta"                                                                                                                                    
+  :     bf = 4*kp                                                                                                                               
+  :     gosub 17800                                                                                                                             
+  :     poke bf+98,1                                                                                                                            
+  14090 poke bf+99,0                                                                                                                            
+  :     gosub 14200                                                                                                                             
+  14092 bf = 181.5*kp                                                                                                                           
+  :     f$ = "main.pic0"                                                                                                                        
+  :     gosub 17800                                                                                                                             
+  14093 bf = 186.5*kp                                                                                                                           
+  :     f$ = "main.pic1"                                                                                                                        
+  :     gosub 17800                                                                                                                             
+  14094 bf = 236*kp                                                                                                                             
+  :     f$ = "main.pic2"                                                                                                                        
+  :     gosub 17800                                                                                                                             
+  14095 bf = 251.75*kp                                                                                                                          
+  :     f$ = "main.pic3"                                                                                                                        
+  :     gosub 17800 eady.                                                                                                                       
+  14199 return                                                                                                                                  
+                                                                                                                                                
+  14200 poke 53265,0                            1127:2, 14090:1                                                                                 
+  :     gosub 12000                                                                                                                             
+  :     gosub 12500                                                                                                                             
+  14205 x = 6                                                                                                                                   
+  :     y = 2                                                                                                                                   
+  :     dx = 27                                                                                                                                 
+  :     dy = 4                                                                                                                                  
+  :     co = 7                                                                                                                                  
+  :     gosub 30                                                                                                                                
+  :     print "sqqqq","      pirates !q"                                                                                                        
+  14210 print "q?      (c) 1987 microprose softw                                                                                                
+        are?qqq"                                                                                                                                
+  14215 x = 10                                                                                                                                  
+  :     y = 10                                                                                                                                  
+  :     dx = 19                                                                                                                                 
+  :     dy = 11                                                                                                                                 
+  :     co = 3                                                                                                                                  
+  :     gosub 30                                                                                                                                
+  14220 print,"?]]design and"                                                                                                                   
+  :     print,"]]programming:"                                                                                                                  
+  :     print,"?]]sid meier"                                                                                                                    
+  :     print                                                                                                                                   
+  14230 print,"?]]art:"                                                                                                                         
+  :     print,"?]]michael haire"                                                                                                                
+  :     print                                                                                                                                   
+  14240 print,"?]]documentation,"                                                                                                               
+  :     print,"]]scenario design:"                                                                                                              
+  14245 print,"?]]arnold hendrick"                                                                                                              
+  :     poke 214,22                                                                                                                             
+  :     print                                                                                                                                   
+  :     print "? v 132x01"                                                                                                                      
+  14250 poke 53265,27                                                                                                                           
+  :     return                                                                                                                                  
+                                                                                                                                                
+  14999 return                                                                                                                                  
+                                                                                                                                                
+  17790 sys vb+3                                220:3, 270:2, 820:2, 825:2, 1010                                                                
+                                                :6, 1075:2, 1076:2, 2010:4, 8110                                                                
+                                                :6, 12930:0                                                                                     
+  :     gosub 41                                                                                                                                
+  :     gosub 17800                                                                                                                             
+  :     gosub 40                                                                                                                                
+  :     sys vb                                                                                                                                  
+  :     return                                                                                                                                  
+                                                                                                                                                
+  17800 rr = 0                                  14012:2, 14015:2, 14025:2, 14035                                                                
+                                                :2, 14036:2, 14070:2, 14092:2, 1                                                                
+                                                4093:2, 14094:2, 14095:2, 17790:                                                                
+                                                2                                                                                               
+                                                                                                                                                
+  17805 gosub 19520                             17900:1                                                                                         
+  17806 poke a1,fn lb(bf)                                                                                                                       
+  :     poke a2,bf/256                                                                                                                          
+  :     rr = peek(53269)                                                                                                                        
+  :     poke 53269,0                                                                                                                            
+  17810 poke a0,0                                                                                                                               
+  :     poke a4,213                                                                                                                             
+  :     poke a5,255                                                                                                                             
+  :     sys kernel                                                                                                                              
+  :     poke 53269,rr                                                                                                                           
+  17820 return                                                                                                                                  
+                                                                                                                                                
+  17900 rr = 255                                14012:4                                                                                         
+  :     goto 17805                                                                                                                              
+                                                                                                                                                
+  19000 def fn dp(x)= peek(x)+256*peek(x+1)     5:1                                                                                             
+  19001 def fn lb(x)=(x-32768)and 255                                                                                                           
+  :     def fn ex(x)= peek(x)+256*(peek(x)>127)                                                                                                 
+  19002 def fn rg(x)=-x*(x>= 0 and x<256)-255*(x                                                                                                
+        >255)                                                                                                                                   
+  19003 a0 = 165                                                                                                                                
+  :     a1 = a0+1                                                                                                                               
+  :     a2 = a1+1                                                                                                                               
+  :     a3 = a2+1                                                                                                                               
+  :     a4 = a3+1                                                                                                                               
+  :     a5 = a4+1                                                                                                                               
+  :     a6 = a5+1                                                                                                                               
+  :     kp = 256                                                                                                                                
+  :     kk = kp*kp                                                                                                                              
+  19004 k = 149*kp                                                                                                                              
+  :     sb = k+41                                                                                                                               
+  :     mvb = k+70                                                                                                                              
+  :     bmvb = k+103                                                                                                                            
+  :     kernel = k+142                                                                                                                          
+  :     s64k = k+29                                                                                                                             
+  :     m64k = k+20                                                                                                                             
+  19010 fd = 035                                                                                                                                
+  :     var = 159*kp                                                                                                                            
+  :     return                                                                                                                                  
+                                                                                                                                                
+  19520 for i = 0 to len(f$)-1                  17805:0                                                                                         
+  :     poke 830+i,asc(mid$(f$,i+1,1))                                                                                                          
+  :     next i                                                                                                                                  
+  19526 poke a0,0                                                                                                                               
+  :     poke a1,8                                                                                                                               
+  :     poke a2,1                                                                                                                               
+  :     poke a4,186                                                                                                                             
+  :     poke a5,255                                                                                                                             
+  :     sys ke                                                                                                                                  
+  19528 poke a0,len(f$)                                                                                                                         
+  :     poke a1,62                                                                                                                              
+  :     poke a2,3                                                                                                                               
+  :     poke a4,189                                                                                                                             
+  :     poke a5,255                                                                                                                             
+  :     sys ke                                                                                                                                  
+  :     return                                                                                                                                  
+                                                                                                                                                
+  21900 gosub 3000                              995:2                                                                                           
+  21905 print "seload " chr$(34)"main" chr$(34)"                                                                                                
+        ,8,1:"                                                                                                                                  
+  :     print "qqqqrun:se"                                                                                                                      
+  21920 gosub 41                                                                                                                                
+  :     poke 631,19                                                                                                                             
+  :     poke 632,13                                                                                                                             
+  :     poke 633,13                                                                                                                             
+  :     poke 198,3                                                                                                                              
+  :     new                                                                                                                                     
+                                                                                                                                                
+  22000 rem                                     206:0, 265:0, 296:0, 991:0                                                                      
+  22060 rr = peek(53269)                                                                                                                        
+  :     poke 53269,0                                                                                                                            
+  :     open 15,8,15,"i0:"                                                                                                                      
+  :     open 2,8,2,"#1"                                                                                                                         
+  22070 print# 15,"u1";2;0;18;0                                                                                                                 
+  :     print# 15,"b-p";2;163                                                                                                                   
+  :     get# 2,i$                                                                                                                               
+  :     close 2                                                                                                                                 
+  :     close 15                                                                                                                                
+  22090 poke 53269,rr                                                                                                                           
+  :     return                                                                                                                                  
+                                                                                                                                                
