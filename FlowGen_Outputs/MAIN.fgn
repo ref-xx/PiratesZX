@@ -1,0 +1,3147 @@
+#0x000000
+4 
+: poke 52,142
+: poke 56,142
+: clr
+: poke 198,0
+5 t$ = ""
+: dim na$(15)
+: gosub 40
+: gosub 19000
+: goto 50
+
+#0x800000@┌%SetVar Variable[v]=zv
+7 vz = va+2*v
+#@│
+: poke vz,fn lb(zv)
+: poke vz+1,zv/kp
+#@└
+: return
+
+#0x5D2758@┌%GetVar zv=Variable[v]
+9 vz = 142.5*kp+2*v
+#@│
+: zv = peek(vz)+kp*peek(vz+1)
+#@└
+: return
+
+#0x526701@%
+10 poke a0,fn lb(f*kp)
+: poke a1,f
+: poke a2,fn lb(t*kp)
+: poke a3,t
+: poke a4,fn lb(l*kp)
+11 poke a5,l
+: sys m64k
+: return
+
+#0x114E35
+12 poke a0,f
+: poke a2,fn lb(t*kp)
+: poke a3,t
+: poke a4,fn lb(l*kp)
+13 poke a5,l
+: sys sb
+: return
+
+#0x101A13
+20 open 15,8,15,"i"
+: print# 15,"s0:main"
+: close 15
+: save "main",8
+: end
+
+30 poke a1,y
+: poke a3,dy
+: poke a4,co
+: poke a0,x
+: poke a2,dx
+: sys wn
+: return
+
+#0x622A6C
+40 poke 792,193
+: poke 808,234
+: poke 56333,129
+: return
+
+#0x452A71
+41 poke 56333,127
+: poke 808,237
+: poke 792,71
+: return
+
+#0x217A03
+50 vb = 150*kp
+: wn = 153.5*kp
+: cty = 143*kp
+: cln = 24
+: nc = peek(cty+1023)-3
+: prs = 148*kp
+55 pty = prs+32
+: mp = 155.5*kp
+: tr = 142*kp
+: so = 158*kp
+: lg = 147*kp
+: dta = 6*kp
+: sg =-1
+60 open 8,8,8,"0:names"+str$(peek(prs+29))+",s,r"
+: for i = 0 to 15
+: input# 8,na$(i)
+: next i
+61 for i = 0 to 9
+: input# 8,rk$(i)
+: next i
+: close 8
+: na$ = ""
+: p$ = "?0 pcs"
+: a = prs+80
+
+62 z = peek(a)
+: if z then na$ = na$+chr$(z)
+: a = a+1
+: goto 62
+70 sn = peek(pr+26)
+: for i = 1 to sqr((sn+1)*1.9)
+: read x$
+: next i
+: data hides,to bacco,sugar
+86 df = peek(prs-3)
+: gosub 12000
+: day = fn dp(lg+4*peek(lg)-3)
+88 yr = int(day/360)
+: day = day-yr*360
+990 cc = peek(prs+25)
+: cp = cty+cln*cc
+: gosub 9180
+: gosub 12500
+995 me = fn dp(pty+3)
+: nn = peek(cp+3)
+: ll = 2
+: px = 1
+: mt =-1
+996 z = peek(prs+18)
+: if z = 1 then gosub 1000
+: goto 2999
+997 sl = sgn(z)
+: if z and 4 then poke prs+18,z and 3
+: gosub 3937
+998 goto 3200
+
+1000 gosub 12500
+1015 zz = int(day/30)
+: gosub 1099
+1017 zz = day-zz*30+1
+: t$ = t$+str$(zz)+","+str$(yr+1560+sn*20)
+1020 t$ = t$+"? continue travelS party statuS personal statuS ship&s loG mapS"
+1023 zz =(ll = 0)*(((pd = 0)or(pd>24))+.5)
+1025 t$ = t$+" citieS take sun sighT"
+1027 if ll = 1 then t$ = t$+" searcH"
+1028 if ll and 2 then t$ = t$+" save gamE"
+1030 x = 10
+: y = 4
+: gosub 8000
+: a = cp
+: gosub 2950
+: if c = 1 then return
+
+#0x632427
+1040 if c<8 then a = pty
+: on c gosub 0,2500,1900,7000,2299,2000,6500
+: goto 1000
+1090 if c = 8-(zz<>0)then gosub 2400
+: goto 1000
+1095 goto 1000
+1098 z = yr+1560+sn*20
+
+1099 t$ = mid$("janfebmaraprmayjunjulaugsepoctnovdecjan",zz*3+1,3)
+: return
+
+#0x570925
+1900 print "?"
+: x = 9
+: y = 2
+: dx = 29
+: dy = 9
+: co = 3
+: gosub 30
+: t$ = ""
+: if peek(prs+20)then t$ = "(married)"
+1910 print
+: print,"qpersonal status: " t$
+1920 for i = 1 to 4
+: z = i and 3
+: gosub 2195
+: print," " co$f$,
+: z = peek(prs+13+(i and 3))
+1925 if z then print rk$(z)
+: goto 1935
+1926 z = fn ex(prs+8+(i and 3))
+: if z>1 then print "(letter of marque)"
+: goto 1935
+1927 if z>-1 then print "(no title)"
+: goto 1935
+1928 if z>-4 then print "wary"
+: goto 1935
+1929 print "hostile"
+
+1935 next i
+: gosub 8435
+: print,"? age:" yr+25,t$ " health"
+1940 print,"? wealth:" fn dp(prs+2)*10 "gold pcs."
+: print,"? land:" peek(pr+5)*50 "acres"
+1980 poke 214,12
+: print
+1982 gosub 8420
+: print,"?reputation: "
+: print,"  ?" f$;
+: gosub 8445
+: print f$
+1983 gosub 2980
+: return
+
+#0x793933
+2000 co$ = "????"
+: gosub 12500
+: poke vb+16,40
+: poke vb+17,108
+2005 print "q  city information"
+: print
+: poke 53269,1
+: mo = 2
+: poke a5,0
+2007 poke 214,4
+: print
+: print "select a city:q"
+: print,"(done)"
+: t$ = "villahermosa"
+2008 zz = fn dp(45)
+: poke a2,peek(zz+3)
+: poke a3,peek(zz+4)
+: poke a4,12
+: for k = 0 to nc
+2010 a = cty+k*cln+12
+: poke a0,fn lb(a)
+: poke a1,a/kp
+: sys m64k
+: if k/3 = int(k/3)then print
+2020 z = peek(a-9)
+: print mid$(co$,z+1,1);
+: if(peek(a-12)and 128)= 0 then print "?";
+2022 print " " t$;
+: next k
+
+2025 if peek(vb+14)= 0 then 2025
+2030 c = 3*(int(peek(vb+17)/8)-15)+int(peek(vb+16)/53)
+: if c<0 then return
+
+#0x70610E
+2035 if c>nc then c = nc
+2040 a = ct+cl*c
+: gosub 2140
+: goto 2025
+2100 gosub 2900
+: t$ = ""
+: gosub 12500
+
+2140 poke a0,19
+: poke a1,0
+: poke a2,16
+: poke a3,8
+: poke a4,3
+: sys wn
+: print "s?"
+: gosub 2950
+2150 print,,c$
+2160 if not peek(a)and 128 then print,," qq? no info?"
+: return
+
+#0x103B5C
+2165 z = peek(a+3)
+: gosub 2195
+: print,," ( " co$;f$ "?)"
+2170 z = peek(a+4)and 15
+: if z then print,,z;"fort(s)"
+2180 print,,peek(a+5)*10;"soldiers."
+: print,,(peek(a+6)+1)*100;"citizens."
+2185 if peek(a+7)then print,," gold:" peek(a+7)"?,000"
+2190 t$ = "strugglingsurviving prosperingwealthy   "
+: z = int(peek(a+8)/64)
+2193 print,," " mid$(t$,z*10+1,10)
+: return
+
+#0x517E45
+2195 f$ = "?spanish?english?french ?dutch  ?pirate "
+: co$ = mid$(f$,z*8+1,1)
+2196 f$ = mid$(f$,z*8+2,7)
+
+2197 z = len(f$)
+: if right$(f$,1)= " " then f$ = left$(f$,z-1)
+: goto 2197
+2199 f$ = f$+" "
+: return
+
+#0x124907
+2250 for k = 4 to 7
+: aa = tr+24+k*8
+: if(peek(aa+3)and 63)<>cc or peek(aa)= 0 then 2280
+2261 z = peek(aa+1)
+: gosub 2290
+2264 x = 4
+: y = 8
+: ff = 35
+: gosub 8590
+: dz = 1
+: poke aa+3,rnd(0)*nc
+2265 f$ = "street"
+: t$ = co$
+: gosub 8290
+: if v<>1 then 2280
+2266 poke aa,0
+: f$ = "spaniard"
+: gosub 3391
+: sg = 4
+: z = peek(pr+6)
+: gosub 8430
+: co$ = "your "+t$
+2270 ff = 44
+: x = 1
+: y = 1
+: gosub 8590
+: a = tr+8
+: gosub 3590
+
+2280 next k
+: return
+
+#0x2E3C38
+2290 co$ = rk$((z and 7)+2)+" "+na$(int(z/8))
+: return
+
+#0x250363
+2295 co$ = rk$(peek(prs+nn+13))+" "+na$
+: return
+
+#0x313B21
+2299 for k = 0 to 2
+: a = tr+8*k
+: gosub 2300
+: next k
+: return
+
+#0x0B6A66
+2300 if peek(a)= 0 then return
+
+#0x0A2F20
+2310 poke 53280,1
+: poke 53282,9
+: poke 53283,0
+: sys vb+3
+: poke 53265,0
+: poke 648,228
+: aa = a
+2320 zz = peek(a)
+: x = peek(a+1)
+: y = peek(a+2)
+2325 f = 15
+: t = 216
+: l = 4
+: gosub 12
+: poke 53281,8
+: x =(x-4)*64-32
+: y =(y-6)*32
+: poke mp+15,255
+2328 f = 4
+: t = 232
+: l = 4
+: gosub 10
+2330 poke mp+6,fn lb(x)
+: poke mp+7,x/kp
+: poke mp+8,fn lb(y)
+: poke mp+9,y/kp
+: sys mp
+2332 f = 0
+: l = 80/kp
+: z = peek(648)
+: t = z
+: gosub 12
+: gosub 5990
+2335 for j = 0 to 3
+: if(zz and(2^j))= 0 then x =(j and 1)*21
+: y = 2+6*(j and 2)
+: gosub 2390
+2340 next j
+: poke 53264,0
+: poke sx,182
+: poke sy,151
+: poke vb+15,0
+: poke sc,1
+: sys vb
+2345 poke 53280,0
+: if aa = tr then print "se  pirate treasure map"
+2346 if aa = tr+8 then z = peek(prs+6)
+: gosub 8430
+: print "se  map to lost " t$
+2347 if aa = tr+16 then print "se  map to lost inca treasure!"
+2350 if peek(aa)and 16 then a = peek(aa+3)*cln+cty
+: gosub 2950
+: print "  ...somewhere near " c$
+
+2360 poke sp,183+(aa = tr+8)
+: poke 53269,1
+: if peek(56320)and 16 then 2360
+2370 gosub 12500
+: poke vb+15,1
+: return
+
+#0x0D0C12
+2390 t$ = "????    missing!   ????"
+: gosub 8005
+: return
+
+#0x421D72
+2400 if ll>= 2 then 2450
+2405 f$ = ""
+: zz = 3
+: gosub 9000
+: x = 6
+: y = 7
+: for k = 0 to 2
+: aa = tr+8*k
+: z = peek(aa)
+2410 if peek(pty+1)<>peek(aa+1)or peek(pty+2)<>peek(aa+2)or z = 0 then 2445
+2415 z = peek(prs+6)
+: gosub 8430
+: co$ = "your "+t$
+: c1 = 15
+: c2 = 7
+2420 f$ = "treasure"
+: if k = 1 then f$ = "rescue"+str$(z and 1)
+: zz =((z-1)and 7)+8
+: c1 = 0
+: c2 = 10
+2422 xx = 1
+: x =-2
+: y = 9
+: gosub 8100
+: ff = 47+k
+: if k = 1 then poke a0,15
+: poke a1,zz
+: sys wn+18
+2425 zz =-int(rnd(0)*9+5)*100*(k = 0)
+: if k = 2 then zz = 10000
+2430 sg = 3
+: x = 5
+: y = 1
+: gosub 8590
+: zz =-zz
+: gosub 3990
+: poke aa,0
+2435 if k<>1 then c1 = 8
+: c2 = 0
+: gosub 7900
+: goto 2445
+2440 y = 8
+: ff = 43
+: gosub 8590
+: a = tr+16
+: gosub 3590
+: c1 = 26
+: c2 = peek(prs+6)
+: gosub 7900
+2441 c = 6
+: gosub 8400
+: for i = 4 to 7
+: poke tr+24+i*8,0
+: next i
+
+2445 next k
+: if f$ = "" then ff = 34
+: gosub 8590
+2449 return
+
+#0x4E7C38
+2450 gosub 12500
+: gosub 2495
+: if a$<>"2" then gosub 2480
+2451 ff = 55
+: gosub 8600
+: t$ = t$+"?"
+: f$ = t$
+
+2452 t$ = f$
+: x = 6
+: y = 6
+: gosub 8000
+2454 if c<3 then gosub 2495
+: if a$ = "2" then return
+
+#0x101464
+2455 if c<3 then gosub 2480
+: return
+
+#0x32636F
+2456 if c>3 then zz = c
+: goto 2470
+2460 t$ = "format disk"
+: gosub 3970
+: if c<>3 then 2452
+2461 open 15,8,15,"n0:p!save,p3"
+: close 15
+: open 8,8,8,"fame,s,w"
+2462 a$ = chr$(13)
+: for i = 0 to 9
+: print# 8,"---";a$;"--";a$;0
+: next i
+: close 8
+: goto 2452
+
+2470 gosub 2495
+: if a$ = "3" then 2475
+2472 t$ = "game save disk"
+: gosub 2490
+: if a$<>"3" then 2452
+
+2475 f$ = "savegame"+str$(zz-3)
+: bf = tr
+: ln = 7*kp
+: gosub 17700
+2476 t$ = "save completed?"
+: gosub 7999
+
+2480 t$ = "game disk side 2"
+: gosub 2490
+: if a$<>"2" then 2480
+2485 return
+
+#0x583956
+2490 t$ = "insert "+t$+"? then press triggeR"
+: x = 6
+: y = 16
+: gosub 8000
+
+2495 poke 53269,0
+: open 15,8,15,"i0"
+: open 2,8,2,"#1"
+: print# 15,"u1";2;0;18;0
+2496 print# 15,"b-p";2;163
+: get# 2,a$
+: close 2
+: close 15
+: return
+
+#0x3D5B30
+2500 print "?q"
+2505 poke a0,2
+: poke a1,1
+: poke a2,19
+: poke a3,9
+: poke a4,6
+: sys wn
+: t$ = "]]]]"
+: gosub 9180
+2510 print "]]]" na$ "&s party"
+: print t$ "crew:" fn dp(pty+3)"men"
+2520 print t$ "cannon:" peek(pty+5)
+: print t$ "?gold:" fn dp(pty+7)p$
+2525 z = kp*peek(pty+9)+peek(pty+13)
+: print t$ "?food:" int(z/fn dp(pty+3))"days"
+2530 gosub 8440
+: print t$ "?crew is " f$
+2535 print t$ "?goods:" peek(pty+10)"tons"
+: print t$ "?" x$ ":" peek(pty+11)"tons?"
+2560 t$ = "prisoners? "
+: for i = 88 to 95
+: zz = peek(tr+i)
+: if zz = 0 then 2570
+2565 z = zz and 127
+: gosub 2290
+: t$ = t$+co$
+: f$ = " (hunter? "
+: if zz>127 then f$ = " (pirate? "
+2566 t$ = t$+f$
+
+2570 next i
+: if len(t$)>12 then x = 1
+: y = 14
+: gosub 8005
+2580 t$ = "ships? "
+: gosub 5920
+: x = 15
+: y = 10
+: gosub 8005
+2590 gosub 2980
+: return
+
+#0x7C457F
+2950 c$ = ""
+: for i = a+12 to a+23
+: c$ = c$+chr$(peek(i))
+: next i
+: if mo = 2 then return
+
+#0x32012B
+2955 z = len(c$)
+: if right$(c$,1)= " " then c$ = left$(c$,z-1)
+: goto 2955
+2960 return
+
+#0x1C7044
+2980 xs = x
+: ys = y
+: t$ = " press trigger to continuE"
+: x = 9
+: y = 21
+: gosub 8000
+: x = xs
+: y = ys
+2985 poke a0,9
+: poke a1,21
+: poke a2,28
+: poke a3,2
+: poke a4,co
+: sys wn
+: return
+
+#0x0D6B63
+2990 rr = 0
+: if peek(vb+14)= 1 then 2990
+
+2992 rr = rr+1
+: if peek(vb+14)= 0 then on rr/199+1 goto 2992,2994
+
+2993 poke vb+16,0
+: return
+
+#0x317B09
+2994 gosub 2980
+: goto 2993
+
+2999 gosub 8500
+: gosub 5000
+3000 gosub 12500
+: a = cp
+: gosub 2950
+: print
+: print "  you have arrived at the lovely"
+3014 if peek(cp)and 64 then print "  inland village of " c$ "."
+: goto 3020
+3015 print "  sea-side town of " c$ "."
+
+3020 zz = peek(cp+4)
+: if zz>1 then print " " zz "forts guard the harbor entrance."
+3021 if zz = 1 then print "  a fort guards the harbor entrance."
+3022 z = nn
+: gosub 2195
+: poke prs+25,cc
+3024 print "  the " co$;f$ "?flag flies over the town."
+3026 if cc = peek(prs-1)then print "  the treasure fleet is in the harbor!"
+: dz = dz+1
+3027 if cc = peek(prs-2)then print "  the silver train is in town!"
+: dz = dz+1
+3030 f$ = "town1"
+: x = 19
+: y = 8
+: c1 = 0
+: c2 = 5
+: gosub 8100
+
+3032 t$ = "sail into harboR"
+: if ll and 1 then t$ = "march into towN"
+3035 t$ = "will you? "+t$+" attack towN sneak into towN leave towN"
+3040 z = peek(cp+11)
+: vv = vv and 3
+: if vt<>cp then mt =-1
+: vv = 0
+3042 vt = cp
+: x = 1
+: y = 6
+: gosub 8000
+: if c = 4 then gosub 12500
+: goto 2999
+3050 if c = 2 then 3100
+3055 if c = 3 then vv = vv or 10
+: goto 3800
+3060 cx = rnd(0)*(fn ex(prs+8+nn)+fn ex(cp+9)-me/100)
+: if cx>-.5 or peek(cp+4)= 0 then 3200
+3070 gosub 12500
+: t$ = "as you approach the towNthe fort opens fire?"
+: x = 1
+: y = 2
+3075 gosub 8005
+: if cx>-1 or ll<>2 then 3032
+3080 t$ = "one of your ships is sunk?"
+: x = 9
+: y = 12
+: gosub 8000
+: gosub 4900
+: goto 2999
+3099 gosub 2980
+: return
+
+#0x0E5146
+3100 ft = 0
+: xm = 0
+: ht = 0
+: for i = 1 to 2
+: if peek(prs-i)= cc then poke cp+5,fn rg(peek(cp+5)+10)
+3101 next i
+: if ll = 2 then 3110
+3102 if fn dp(pty+3)>peek(cp+5)*15 or peek(cp+4)= 0 or peek(cp+5)<10 then 3122
+3103 gosub 6700
+: zz = 0
+: gosub 3980
+: if v = 0 then 2999
+3104 if peek(cp+4)= 0 then 3160
+3106 goto 3122
+
+3110 if peek(cp+4)= 0 then f$ = "street"
+: t$ = "town"
+: goto 3125
+3112 ft = 1
+: sa = dta+kp+21*7
+: poke sa+2,peek(cp+5)/2+.5
+: poke sa+3,12*(peek(cp+4)and 7)
+3115 poke sa,8
+: poke sa+1,nn
+: poke sa+4,0
+: gosub 5460
+: if k = 0 then 2999
+3120 poke cp+5,peek(cp+5)/2+fn gs(59)/10+.5
+
+3122 x = 3
+: y = 3
+: ff = 61
+: gosub 8590
+: t$ = "fort"
+: f$ = "court"
+
+3125 y(1)= 3+rnd(x)*3
+: t(1)= 5+peek(cp+4)
+3130 gosub 8450
+: t(0)= peek(cp+5)*10+5
+: y(0)= me-xm
+: gosub 8300
+: zz = xm
+: gosub 3980
+3150 if v = 0 or dl then c =-4
+: gosub 8400
+: c =-(8+nn)
+: gosub 8400
+: goto 2999
+
+3160 poke cp+5,(fn gs(56)+9)/10
+: gosub 8180
+: t$ = "citizens"
+: gosub 3610
+: goto 2999
+
+3200 c1 = 1
+: gosub 7890
+: gosub 12500
+: poke(cp),peek(cp)or 128
+3210 a = cp
+: gosub 2140
+: f$ = "village"+str$(3-ll)
+: x = 1
+: y = 3
+: c1 = 0
+: c2 = 9
+: gosub 8100
+: goto 3300
+
+3250 t$ = "we do not trade with pirates?"
+3260 if(nn = 0)and(peek(cp+8)>(peek(dt+249)+25*fn ex(pr+13)))then gosub 7999
+: goto 3300
+3261 f$ = "merchant"
+: x = 11
+: y = 9
+: gosub 8099
+3262 k = 0
+: if peek(pty+15)<2 or ll = 3 then 3264
+3263 t$ = "would you care tOsell any ships?"
+: mo = 0
+: gosub 3285
+
+3264 if ll = 3 or(k = 0 and peek(pty+20)<8)then 3270
+3265 t$ = "would you like anYships repaired?"
+: mo = 1
+: gosub 3285
+
+3270 z = peek(cp+8)*(1+abs(6-mn)/6)
+: zz = peek(cp)
+3271 for i = 0 to 3
+: t(i)= int((1+rnd(0))*z*(peek(cp+6)+10)/150)
+: p(i)= int(z/50+3-i/2)
+3272 if zz and 2^(3-i)then p(i)= int(p(i)/2+1)
+3273 if i>1 and((zz and 2^(6-i))<>0)then p(i)= 2*p(i)
+3275 next i
+: t(0)= 15*t(0)
+: p(0)= 1
+: if t(0)>2500 then t(0)= 2500
+3276 p(4)= 5
+: t(4)= 0
+: if mt>= 0 then t(0)= mt
+3278 c = 0
+: t$ = "merchant"
+: xm = fn dp(pt+7)
+: gosub 8210
+: mt = fn gs(7)
+3279 if abs(xm-fn dp(pt+7)>20)then poke cp+8,peek(cp+8)*.95+12
+3280 goto 3300
+
+3285 x = 18-14*mo
+: y = mo
+: gosub 8005
+
+3286 t$ = " no thanks?"
+3290 k = 0
+: for i = 1 to peek(pty+15)
+: x = peek(pty+19+i)
+: zz = x and 7
+: gosub 4290
+: k = k-(x>7)
+3291 z =(x and 248)/8
+: if mo = 0 then z = 10-z
+3292 t$ = t$+" "+f$+"?  "
+: if z then t$ = t$+str$((zz+1)*z*50)+" gold pcS"
+: goto 3294
+3293 t$ = t$+" no damagE"
+
+3294 next i
+: x = 20-14*mo
+: y = 3+mo
+: gosub 8000
+: c = int(c/2-.5)
+: if c<0 then return
+
+#0x1C3E78
+3295 x = peek(pty+20+c)
+: z =(x and 248)/8
+: if mo = 0 then z = 10-z
+3296 zz = z*((x and 7)+1)*10*(.5+(mo = 0))
+: gosub 3990
+: if zz<0 then 3286
+3297 if mo = 1 then poke pty+20+c,x and 7
+: t$ = "ship repaireD"
+: gosub 7999
+: if k>1 then 3286
+3298 if mo = 0 then zz = c
+: gosub 4905
+: t$ = "ship solD"
+: gosub 7999
+: if peek(pty+15)>1 then 3286
+3299 return
+
+#0x122A4F
+3300 zz = 3
+: gosub 9000
+: vv = vv or-(peek(cp+6)<6)
+
+3303 a = cp
+: gosub 2950
+: t$ = c$+" is bustlinGwith activity.  do you? ?"
+3305 if vv and 1 then t$ = t$+"?"
+3306 t$ = t$+"visit the governoR? visit a taverN?"
+3308 t$ = t$+" trade with a merchanT?"
+: if vv and 8 then t$ = t$+"?"
+3309 t$ = t$+" divide up the plundeR? check informatioN leave towN"
+3320 x = 12
+: y = 15
+: gosub 8000
+: print "?";
+: if c = 6 then gosub 1000
+: goto 3303
+3325 if(vv and(2^(c-2))and 9)<>0 then t$ = "you can&t do that?"
+: gosub 7999
+: goto 3303
+3330 on c goto 0,3340,3400,3250,3900,0,3332
+
+3332 zz = int(me*(fn ex(pty+17)-3)/15)
+: if zz<=-me then zz =-me+1
+3335 x = 6
+: y = 16
+: t$ = "roll call revealSthat"+str$(-zz)+" crew memberShave deserted?"
+3336 if zz<-1 then gosub 3975
+: gosub 8000
+3337 c = tr+88+rnd(0)*8
+: z = peek(c)and 127
+: if z = 0 or ll<>2 then 3339
+3338 gosub 2290
+: poke c,0
+: t$ = co$+" jumpSoverboard and escapes?"
+: gosub 8000
+
+3339 gosub 8500
+: goto 2999
+
+3340 ax = 0
+: vv = vv or 1
+: f$ = "governor"
+: rd = 14
+: gosub 8098
+3341 gosub 2295
+: t$ = "%my dear "+co$+"?"
+: v = 0
+: for i = 0 to 3
+3342 a = prs+64+nn*4+i
+: if peek(a)then z = i
+: gosub 2195
+: if v then t$ = t$+"anD"
+3343 if peek(a)= 1 then t$ = t$+"?we are allieDwith the "+f$
+: v = v or 1
+3344 if peek(a)= 255 then t$ = t$+"?we are at waRwith the "+f$
+: v = v or 2
+3345 next i
+: if(v and 2)= 0 or fn ex(prs+8+nn)<2 then t$ = t$+".?"
+: goto 3347
+3346 t$ = t$+"??i charge you to seeKout and destroy ouRenemy&s ships and towns!?"
+
+3347 if v then x = 2
+: y = 2
+: gosub 8000
+3348 gosub 2250
+3350 for k = 88 to 95
+: z = peek(tr+k)
+: if z<128 or int(z/32)-4<>nn then 3354
+3351 poke tr+k,0
+: poke prs+8+nn,(peek(prs+8+nn)+(z and 7)/2+1)and 255
+3352 z = z and 127
+: gosub 2290
+: ff = 54
+: x = 2
+: y = 12
+: gosub 8590
+
+3354 next k
+: a = pr+13+nn
+: z = peek(a)+1
+: ln = fn ex(a-5)-int(z^2+2)
+: if ln<0 or z>9 then 3360
+3355 poke a,z
+: poke a-5,peek(a-5)-ln
+: z = nn
+: gosub 2195
+3356 c$ = f$
+: co$ = rk$(peek(a))+" "+na$
+: x =-17
+: y = 9
+: f$ = "award"
+: rd = 14
+: gosub 8099
+3357 x = 1
+: y = 1
+: ff = 7
+: c1 = 2
+: c2 = peek(a)+nn*64
+: gosub 7900
+: sg = 0
+: gosub 8590
+3358 if ln>0 then poke prs+5,fn rg(peek(prs+5)+ln)
+: zz = ln*50
+: y = 10
+: ff = 13
+: gosub 8590
+3359 y = 2
+: if peek(prs+6)<4 and(peek(prs+18)and 1)= 0 then gosub 9250
+
+3360 aa = tr+88+int(rnd(0)*8)
+: z = peek(aa)and 127
+: if z = 0 then 3367
+3362 gosub 2290
+: ff = 53
+: zz =((z and 7)+1)*50*int(rnd(0)*3+1)
+: x = 4
+: y = 3
+: gosub 8590
+3364 if c = 5 then zz =-zz
+: gosub 3990
+: poke aa,0
+
+3367 x = 2
+: y = 3
+: a = cp
+: gosub 2950
+: if fn ex(prs+8+nn)<-3 then 3388
+3368 zz = 20*(4-fn ex(prs+8+nn)^3)
+: if zz>= 10 then 3380
+3369 z = peek(cp+11)
+: ln =(z and 12)/4
+: if z and 224 then 3710
+3370 zz =(peek(pr+13+nn)+fn dp(pr+2)/999+df/2)/(ln+1)
+: if zz<.5 or peek(pr+20)then 3388
+3371 gosub 3390
+: z = ln*2+1+nn*32
+: gosub 2290
+: if peek(prs+23)= 4 then zz = zz*2
+3372 x = 1
+: y = 1
+: ff = 15
+: gosub 8590
+: gosub 2295
+: if c<>7 then 3378
+3373 if zz<4 then gosub 8445
+: c$ = f$
+: ff = 16+int(zz/2)
+: gosub 8590
+: goto 3300
+3374 ff = 18
+: gosub 8590
+: if c<>6 then 3300
+3375 f$ = "street"
+: t$ = "suitor"
+: gosub 8290
+: if v = 0 then 3300
+3376 gosub 12500
+: poke prs+20,ln+1
+: f$ = "wedding"
+: x =-4
+: y = 9
+: gosub 8099
+3377 ff = 19
+: x = 10
+: y = 1
+: sg = 1
+: gosub 8590
+: poke cp+11,peek(cp+11)or 64
+: goto 3300
+
+3378 ff = 45
+: if zz*rnd(0)<= 2 then 3300
+3379 vv = vv and 247
+: gosub 8590
+: poke cp+11,peek(cp+11)or 128
+: c = 21
+: gosub 8400
+: goto 3300
+
+3380 z = nn
+: gosub 2195
+: co$ = f$
+: ff = 5
+: x = 2
+: y = 4
+: if fn ex(prs+nn+8)<0 then ff = 6
+3381 gosub 8590
+: if c<>5 then 3300
+3382 gosub 3990
+: if zz<0 then 3300
+3385 poke cp+9,0
+: poke prs+8+nn,0
+: c = 8+nn
+: gosub 8400
+: gosub 8400
+: goto 3300
+
+3388 if ax = 0 then t$ = "the governor haSnothing to say?"
+: x = 5
+: y = 20
+: gosub 8000
+3389 goto 3300
+
+3390 f$ = "bride"+str$((peek(cp+11)and 12)/4)
+
+3391 x =-17
+: y = 9
+: c1 = 0
+: k =(peek(cp+11)and 3)+(cc and 4)+490
+: c2 = peek(dta+k)
+: gosub 8100
+3392 poke a0,15
+: poke a1,peek(dta+k+8)
+: sys wn+18
+3393 poke a0,11
+: poke a1,(cc and 3)+11
+: sys wn+18
+: return
+
+#0x644C51
+3400 ax = 0
+: f$ = "tavern"
+: gosub 8097
+3410 zz = int((fn ex(prs+4)+7-df)*(rnd(0)+1)*peek(cp+6)/9)
+3415 z =(4-df)*6
+: if fn dp(pty+3)<4*z and zz<z then zz = z
+3416 z = 16*(peek(pty+15)*2+peek(pty+14))
+: if(me+zz)>z then zz = z-me
+3420 if(zz<= 2)or(vv and 2)then 3500
+3425 f$ = "crew"
+: rd = 14
+: gosub 8097
+: gosub 8420
+: gosub 2295
+3430 t$ = "'look! it&s that "+f$+"?sea-dog: "+co$
+3435 t$ = t$+"'?a rowdy group of"+str$(zz)+" meNasks to join your crew?do you?"
+3440 t$ = t$+" sign them up? turn them away?"
+: x = 6
+: y = 0
+: gosub 8000
+: if c<>5 then 3500
+3445 gosub 3980
+
+3500 vv = vv or 2
+: gosub 2250
+: zz = 5+int(rnd(0)*10)
+3505 a = cty+cln*int(rnd(0)*(nc+1))
+: if(peek(a)and 128)and(zz<>5)then 3500
+3506 if peek(a)and 128 then 3550
+3507 gosub 2950
+: f$ = "travel"
+: rd = 13
+: gosub 8095
+3510 t$ = "a traveller froM"+c$+" offers tOsell you informatioNfor"+str$(zz)
+3515 t$ = t$+"0 gold pieces?do you agree? yeS nO"
+: x = 10
+: y = 13
+: gosub 8000
+3520 if c<>5 then 3550
+3525 gosub 3990
+: if zz<0 then 3550
+3530 poke a,peek(a)or 128
+: gosub 2140
+: gosub 2950
+: gosub 2980
+: t$ = "travellers"
+3540 cx = cp
+: cp = a
+: cc =(cp-cty)/cln
+: gosub 3610
+: cp = cx
+: a = cp
+: cc =(cp-cty)/cln
+: gosub 2950
+
+3550 if peek(tr)= 31 or rnd(0)>.2 then 3600
+3565 f$ = "mapper"
+: rd = 13
+: gosub 8098
+: ff = 4
+: x = 1
+: y = 3
+: gosub 8590
+: if c<>5 then 3600
+3570 zz = 50
+: gosub 3990
+: if zz<0 then 3600
+3580 a = tr
+: gosub 3590
+: goto 3600
+
+3590 f$ = "treas"
+: gosub 12900
+: gosub 5950
+: v = 21
+: zv = a
+: gosub 7
+: v = 22
+: zv = nc
+: gosub 7
+3595 gosub 12950
+: goto 2300
+
+3600 z = tv
+: tv = day+yr*360
+: if tv-z>30 then f$ = "tavern news"
+: rr = 2
+: gosub 7010
+: ax = 1
+3605 t$ = "patrons"
+: gosub 3610
+3606 if ax = 0 then t$ = "nothing happenSat the tavern?"
+: x = 8
+: y = 20
+: gosub 8000
+3607 goto 3300
+
+3610 a$ = "? no inquirY"
+: a = cp
+: gosub 2950
+: k = 0
+: for i = 4 to 7
+: a = tr+24+8*i
+3612 if peek(a)= 0 then 3620
+3613 z = 0
+: for j = 3 to 7
+: z = z-((peek(a+j)and 63)= cc)
+: next j
+: if z = 0 then 3620
+3615 z = peek(a+1)
+: gosub 2290
+: a$ = a$+" "+co$+"?"
+: t(k)= i
+: k = k+1
+
+3620 next i
+: if k = 0 then return
+
+#0x563833
+3625 t$ = "the "+t$
+: ff = 8
+: gosub 8610
+: t$ = t$+a$
+: a$ = t$
+
+3630 x = 10
+: y = 9
+: gosub 8000
+: if c<7 then return
+
+#0x793928
+3640 c = t(c-7)
+: aa = tr+24+c*8
+: z = peek(aa+1)
+: gosub 2290
+3650 j = 0
+: for i = 7 to 3 step-1
+: if(peek(aa+i)and 63)= cc then zz = peek(aa+i-1)and 63
+: j = i
+3655 next i
+: if j>3 then a = cty+cln*zz
+: gosub 2950
+3658 if j then poke aa+j,cc+128
+: c1 = 9
+: c2 =(c-4)*64
+3665 if j>3 then t$ = co$+" lefTfor "+c$+"?a few months ago?"
+: c2 = c2+zz
+: gosub 7900
+3670 if j = 3 then t$ = co$+" iSnow in "+c$+"?"
+: c2 = c2+cc
+: gosub 7900
+3690 x = 2+c
+: y = 14-c
+: gosub 8000
+: t$ = a$
+: if k>1 then 3630
+3695 a$ = ""
+: return
+
+#0x6E4D2F
+3710 co$ = "informer"
+: if peek(cp+11)and 64 then co$ = "wife"
+3715 gosub 3390
+: ff = 46
+: x = 1
+: y = 1
+: gosub 8590
+3720 gosub 4270
+: gosub 4275
+: goto 3300
+
+3800 if fn ex(cp+9)*fn ex(prs+4)>-rnd(0)*50 then 3200
+3810 ff = 2
+: x = 6
+: y = 10
+: gosub 8590
+: f$ = "street"
+: t$ = "guard"
+3820 dz = 1
+: gosub 8290
+: goto 2999
+
+3900 t$ = "divide plunder"
+: gosub 3970
+: if c<>3 then 3300
+3901 gosub 3910
+: goto 3300
+: rem distribute booty
+
+3910 aa = fn dp(pty+7)
+: zz = int(aa/me*.8+.5)
+: z = int(sqr(zz)/2.3)
+: if z>3 then z = 3
+3912 poke prs+4,((sqr(zz)+fn ex(prs+4)+1)/2)and 255
+3915 gosub 8441
+: co$ = f$
+: ff = 10
+: x = 2
+: y = 0
+: gosub 8595
+3925 gosub 8445
+: zz = 2*df+2
+: co$ = "as captain ("+f$
+: x = 4
+: y = 8
+: ff = 11
+: gosub 8600
+3926 zz = int(aa*.05*(1+df))
+: t$ = t$+str$(zz*10)+" gold pcs?"
+: gosub 8005
+: gosub 3995
+3931 gosub 3960
+: ff = 9
+: gosub 8600
+: t$ = t$+"?"
+: df = df+1
+: gosub 8445
+: df = df-1
+3932 if df<3 then t$ = t$+" advance to "+f$+" level?"
+3935 gosub 8000
+: if c = 8 then df = df-(df<4)
+: poke prs-3,df
+: v = 73
+: zv = df
+: gosub 7
+3936 if c = 7 then t$ = "end the game"
+: gosub 3970
+: if c = 3 then 21000
+
+3937 ff = 28
+: x = 1
+: y = 1
+: gosub 8595
+3938 poke prs+7,240
+: xm = 0
+: t$ = ""
+: for j = 0 to 3
+: zz = 26
+: gosub 9000
+: next j
+: aa = fn dp(pty+7)
+
+3940 if aa = 0 then z = fn dp(prs+2)
+: zz =-.1*z
+: gosub 3995
+: aa = zz
+3942 poke pty+7,fn lb(aa/10)
+: poke pty+8,aa/10/kp
+: z = peek(pty+20)and 7
+: poke pt+14,z*2+2
+3945 poke pty+20,z
+: poke pty+5,z*2+6
+: for i = 10 to 13
+: poke pty+i,0
+: next i
+: poke pty+9,15
+3946 poke pty+15,1
+: zz = 16+fn ex(prs+4)-me
+: gosub 3980
+: poke prs+7,0
+: vv = 0
+3950 return
+
+#0x4D2743
+3960 x = 6
+: y = 13
+: if peek(prs+18)and 1 then ff = 14
+: gosub 8590
+: goto 21000
+3961 gosub 8435
+: if z = 4 then ff = 60
+: gosub 8590
+: goto 21000
+3962 return
+
+#0x70594F
+3970 t$ = "are you surEyou want tO"+t$+"? yeS nO"
+: x = 10
+: y = 17
+: gosub 8000
+: return
+
+#0x2C780F
+3975 gosub 3980
+: zz =-zz/(me-zz)*fn dp(pty+7)
+: gosub 3990
+: return
+
+#0x4B1F3C
+3980 me = fn dp(pty+3)+int(zz)
+: poke pty+3,fn lb(me)
+: poke pty+4,me/kp
+3981 if me = 0 then zz = 1
+: goto 3980
+3982 return
+
+#0x60336E
+3990 zz = fn dp(pty+7)-zz
+: if zz<0 then t$ = "not enough gold?"
+: gosub 7999
+: return
+
+#0x337D55
+3992 poke pty+7,fn lb(zz)
+: poke pty+8,zz/kp
+: return
+
+#0x7E1320
+3995 zz = fn dp(prs+2)+zz
+: poke prs+2,fn lb(zz)
+: poke prs+3,zz/kp
+: return
+
+#0x80654F
+4000 v = 0
+: z = nn
+: gosub 2195
+: if dd>12 then f$ = "unknown "
+4015 t$ = "'sail ho!?the lookout reports Asail on the horizon?"
+: x = 2
+: y = 14
+4020 if df<2 then t$ = t$+"'we&re in "+f$+"waters?the master reminds?"
+4025 t$ = t$+"shall we? investigatE continue voyagE"
+: gosub 8000
+: if c and 1 then return
+
+#0x5F750F
+4030 zv = int(rnd(0)*(me/50+wa/6-fn ex(cp+9))/3)
+: if zv>4 then zv = 4
+4040 sa = dta+7*(zv+5*peek(cp+3))+kp
+4041 if(rnd(0)<.4)or(dd>12)then sa = dta+7*int(rnd(0)*20)+kp
+4042 if cc = peek(prs-1)and rnd(0)>wa/24 then sa = dta+7*20+kp
+4049 zz = 5
+: gosub 4300
+4060 zz = peek(sa)
+: gosub 4290
+: gosub 2197
+4070 t$ = "she looks like A"+f$+"captain?shall we? investigatE sail awaY"
+4080 x = 1
+: y = 16
+: gosub 8000
+: nn = peek(sa+1)
+4085 ht = 0
+: if peek(sa+4)<6 or fn ex(prs+8+nn)>= 0 then 4100
+
+4090 z = int((nn+rnd(0))*32)
+: if nn = 4 then z = int((peek(cp+3)+rnd(0))*32)
+4091 if z = 0 then 4090
+4092 gosub 2290
+: dz = int((z and 7)/3)
+: ht = z
+: z = dz*20+1
+: gosub 8421
+4093 t$ = "'arrrgh!; it&s the "+f$+"?pirate"
+: if nn<>4 then t$ = t$+"-hunter"
+4094 t$ = t$+": "+co$+"!?he&s chasing us, captain!'?"
+4095 x = 2
+: y = 2
+: gosub 8005
+: c = 3
+
+4100 z = nn
+: gosub 2195
+: if c<>3 then return
+
+#0x3C3602
+4105 zz = nn
+: gosub 4310
+4110 t$ = "she&s flying "+f$+"?colors, captain?shall we? close for battlE"
+4120 t$ = t$+" hail for newS sail awaY"
+: x = 2
+: y = 14
+: gosub 8000
+4125 if(rnd(0)<(df/3))and ht then v = 1
+: return
+
+#0x7A444D
+4130 if c = 5 then return
+
+#0x4D8045
+4131 if c = 4 and fn ex(prs+nn+8)>-4 then f$ = "ship&s news"
+: rr = 2
+: tv = day+yr*360
+: goto 7010
+4135 poke cp+9,(fn ex(cp+9)+(dd<7))and 255
+: v = 1
+: return
+
+#0x407437
+4140 t$ = "captain"
+: f$ = "deck"
+: t(0)= fn gs(59)
+: y(1)= 7.9-fn gs(9)/16
+: if ht then t$ = co$
+4145 z = peek(sa+4)
+: y(0)= me-xm
+: t(1)= z-int(ln/16)
+: dz =(7 and ht)/3
+4150 gosub 8300
+: zz = xm
+: gosub 3980
+: if v = 0 then wa = wa+16
+: c =-4
+: gosub 8400
+: gosub 8400
+: return
+
+#0x474D1D
+4152 c1 = 4
+: gosub 7880
+
+4155 xx = 1
+: x =-11
+: y = 9
+: f$ = "plunder"
+: rd = 12
+: gosub 8099
+4156 sg = 1
+: zz = peek(sa)
+: gosub 4290
+: t$ = "%captain, we&ve captureD"
+4157 if ht then z = ht
+: gosub 2290
+: t$ = t$+co$+" anD"
+4158 t$ = t$+"a"+str$(cx)+" gun "+f$+"?of"+str$(zz*20+20)+" tons. we "
+: gosub 8580
+4159 t$ = t$+"havEspace for"+str$(z)+" tons in thEhold. shall we keep her??"
+4160 t$ = t$+" yes, send a prize creW no, plunder and sink heR"
+: x = 1
+: y = 1
+: gosub 8000
+4161 c = c+(ht<>0)
+: if c = 6 or peek(pty+15)>7 then 4200
+4164 z = peek(pty+15)
+: poke pty+15,z+1
+: poke pty+20+z,peek(sa)+8*int(ln/16)
+4165 poke pt+14,peek(pt+14)+peek(sa)*2+2
+4170 if z*8>me then zz = z*8-me
+: gosub 3980
+
+4200 c = 4
+: gosub 8400
+: t$ = "crewmen"
+4210 if nn<>4 then c =-nn-8
+: gosub 8400
+: if dd<(5+peek(sa))then gosub 9900
+: gosub 3610
+4212 if ht = 0 then 4219
+4213 z = ht
+: gosub 2290
+: x = 8
+: y = 4
+: ff = 1
+: c = 0
+: if(nn and 3)= 0 then gosub 8590
+4214 if c = 6 then gosub 4270
+: goto 4219
+4215 if c = 7 then gosub 4275
+: goto 4219
+4217 for i = 88 to 95
+: if peek(tr+i)= 0 then poke tr+i,ht+(nn and 4)*32
+: i = 99
+4218 next i
+
+4219 t(0)= int((peek(cp+8)+64)/16*peek(sa+5)*rnd(0))
+: t(1)=(1+rnd(0))*peek(sa+2)
+4220 for i = 2 to 4
+: t(i)= peek(sa+6)*rnd(0)^2
+: p(i)= 0
+: next i
+: t$ = "leave behind"
+: t(4)= cx/2
+4225 poke pty+17,(peek(pty+17)+1-(peek(sa+4)>5))and 255
+: p(0)= 0
+: p(1)= 0
+4230 gosub 8210
+: zz = int(peek(sa+2)*(fn ex(prs+4)+5)*rnd(0)/10)
+: if zz<2 then 4265
+4240 t$ = "captain"+str$(zz)+" sailorSwish to join our crew? take theM leave theM"
+4250 x = 2
+: y = 16
+: gosub 8000
+4260 if c = 2 then gosub 3980
+: gosub 8500
+
+4265 return
+
+#0x6E7D72
+4270 t$ = "the treasure fleeT"
+: a = 1
+: c$ = "spain"
+: goto 4280
+
+4275 t$ = "the silver traiN"
+: a = 2
+: c$ = "peru"
+
+4280 z = fn ex(prs-a)
+: y = 10+a
+: if z>= 0 then c1 = 19+a
+: c2 = z
+: gosub 7900
+: a = cty+z*cln
+: gosub 2950
+4285 t$ = t$+"is in "+c$+"?"
+: x = 3
+: gosub 8000
+: return
+
+#0x670B11
+4290 f$ = "pinnace     sloop       barque      cargo fluyt merchantman frigate   "
+4292 f$ = f$+"  war galleon galleon     fort"
+: z =(zz and 7)*12
+: f$ = mid$(f$,z+1,12)
+4293 if(zz and 7)= 5 and sn<4 then f$ = "fast galleon"
+4294 if zz and 248 then f$ = f$+" (damgd)"
+4296 return
+
+#0x751C7A
+4300 x = peek(sa)
+: if x = 5 and sn<4 then x = 8
+4305 f$ = "ship"+str$(x)
+: x =-19*sgn(zz)
+: y = 1
+: c1 = 14
+: c2 = 9
+: gosub 8100
+
+4310 t$ = "326501"
+: poke a0,9
+: poke a1,(asc(mid$(t$,abs(zz)+1))and 7)+8
+: sys wn+18
+: return
+
+#0x722427
+4900 v = 0
+: zz = int(rnd(0)*peek(pty+15))
+: goto 4910
+
+4905 v = 1
+
+4910 if peek(pty+15)= 1 then 4950
+4915 z =(peek(pty+20+zz)and 7)*2+2
+: cx = peek(pty+14)
+: poke pty+14,cx-z
+: cx =(cx-z)/cx
+4920 for i = zz to 10
+: poke pty+20+i,peek(pty+21+i)
+: next i
+: poke pty+15,peek(pty+15)-1
+4925 if v then 4949
+4930 zz = fn dp(pty+7)*(1-cx)
+: gosub 3990
+4940 for i = 9 to 12
+: poke pty+i,int(cx*peek(pty+i))
+: next i
+4945 poke pty+5,int(cx*peek(pty+5))
+
+4949 return
+
+#0x2C4A43
+4950 gosub 12500
+: x = 3
+: y = 9
+: c1 = 9
+: c2 = 13
+: f$ = "island"
+: gosub 8100
+: x = 1
+: y = 1
+: ff = 30
+: gosub 8595
+4955 f$ = "island"
+: gosub 12900
+: gosub 5950
+: gosub 12950
+: sl = 0
+: gosub 4990
+4960 x = 1
+: y = 14
+: ff = 31
+: gosub 8590
+: return
+
+#0x29155E
+4990 z = fre(0)
+: gosub 3960
+4992 poke prs+7,240
+: xm = 0
+: t$ = ""
+: for j = 0 to 6+fn ex(prs+4)/2
+: zz = 27
+: gosub 9000
+: next j
+: aa = 0
+4995 gosub 3940
+: f = 0
+: t =(tr+24)/kp
+: l =.4
+: gosub 12
+: gosub 8435
+: x = 7
+: y = 8
+: if z = 4 then 3960
+4996 ff = 56+z
+: gosub 8590
+: df = df-sgn(df and 3)
+: poke prs-3,df
+: gosub 8445
+: co$ = f$
+: return
+
+#0x3C4717
+5000 z =-1
+: gosub 8700
+: gosub 8500
+: f$ = ""
+: gosub 12900
+: if sl<2 then sk = 2
+: gosub 5950
+5010 if sl then f = 142.5
+: t = va/kp
+: l =.5
+: gosub 10
+: v = 18
+: zv = 1
+: gosub 7
+: goto 5090
+5040 v = 23
+: zv = cp
+: gosub 7
+: v = 22
+: zv = nc
+: gosub 7
+: v = 19
+: zv = 0
+: gosub 7
+
+5090 gosub 12500
+: poke s+12,132
+: poke s+13,74
+: if ll = 0 then poke s+11,129
+5095 f = 15
+: t = 216
+: l = 4
+: gosub 12
+: f = 4
+: t = 232
+: gosub 10
+: if wa>15 then poke pr+60+peek(cp+3),cc
+5096 f = 6
+: t = 142.5
+: l =.5
+: gosub 10
+: v = 79
+: zv = t*kp
+: gosub 7
+5098 sl = 2
+: zv = int(3.5-abs(mn-8)/3)
+: v = 12
+: gosub 7
+: v = 4
+: zv = wa
+: gosub 7
+: poke s+18,128
+5100 z = 186.5
+: gosub 12970
+5104 poke s+13,128
+: ln = peek(a0)
+: gosub 12500
+: gosub 5990
+5105 ll = fn gs(5)
+: pd = fn gs(38)
+: f = va/kp
+: t = 142.5
+: l =.5
+: gosub 10
+5107 cp = fn gs(23)
+: wa = fn gs(4)
+: dd = fn gs(26)
+: cc =(cp-cty)/cln
+: zz = int(fn gs(20)/32)+1
+5110 gosub 9000
+: nn = peek(cp+3)
+: on ln goto 5450,5300,5350,5365,5000
+5115 gosub 1000
+: goto 5000
+
+5300 v = 11
+: gosub 9
+: t$ = "captain, we have onlY"+str$(zv)+" day&s food left?"
+5310 x = 8
+: y = 4
+: if zv then
+: gosub 8000
+: goto 5000
+5320 ff = 38
+: gosub 8590
+: poke pty+9,5
+: zz =-me/3
+: gosub 3975
+: goto 5000
+
+5350 zz = peek(prs+128)
+: ff = 37
+: x = 8
+: y = 5
+: gosub 8590
+: v = 0
+: gosub 4910
+5355 goto 5000
+
+5365 ll = ll or 2
+: return
+
+#0x0D070B
+5450 gosub 4000
+: ft = 0
+: if v = 0 then wa = wa+16
+: goto 5000
+5455 gosub 5460
+: goto 5000
+
+5460 ln = int(rnd(0)*3)
+: if peek(pty+15)= 1 then 5500
+5465 z = me-peek(pty+15)*8+8
+: zz = peek(pty+5)
+: if zz>z/4 then zz = int(z/4)
+5470 t$ = "we have"+str$(z)+" men and"+str$(zz)+"?cannon ready for battle?"
+5472 t$ = t$+"winds are "+mid$(" lightmediumstrong",ln*6+1,6)+".  whicH"
+5475 t$ = t$+"ship will you command? "
+: gosub 5920
+: x = 3
+: y = 3
+: gosub 8000
+5480 z = peek(pty+20)
+: poke pty+20,peek(pty+16+c)
+: poke pty+16+c,z
+
+5500 print "??"
+: vv = 0
+: xm = fn gs(8)
+: if ft then gosub 6700
+5510 f$ = "ships"
+: gosub 12900
+: v = 8
+: zv = xm
+: gosub 7
+: v = 34
+: zv = ft
+: gosub 7
+: v = 13
+: zv = ln
+: gosub 7
+5540 v = 35
+: zv = cp
+: gosub 7
+: v = 41
+: zv = 031
+: gosub 7
+: v = 76
+: zv = sa
+: gosub 7
+: sk = 3
+5555 gosub 5950
+: dz = 0
+: poke 214,20
+: print
+: zz = peek(pty+20)and 7
+: gosub 4290
+: print "? " f$ "   ";
+5560 zz = peek(sa)
+: gosub 4290
+: poke 211,20
+: poke 53270,8+16*ft
+: if ft then f$ = "efort"
+5565 print "?" f$
+: print "e    guns,     men","   guns,     men"
+5570 print " no damage","no damage"
+: print " guns loaded",
+: if ft = 0 then print "battle sails";
+
+5600 gosub 12950
+5605 k = 0
+: me = fn dp(pty+3)
+5610 on peek(a0)goto 5620,5630,5640,5650,5660,5670,5680,5690,5700,5710,5720,5730
+
+5620 t$ = "?reloadinge"
+: goto 5635
+5630 t$ = "guns loaded"
+
+5635 poke 214,23
+: print
+: print "                   ?"
+: print " " t$;
+: goto 5600
+5640 goto 5600
+5650 t$ = mid$(" lightmediumstrong",fn gs(13)*6+1,6)+" winds from the "
+5651 z = int(fn gs(8)/16)*3+1
+5652 t$ = t$+mid$("s  sswsw wsww  wnwnw nnwn  nnene enee  esese sse",z,3)
+5656 poke 214,19
+: print
+: print "?------" t$ "------e";
+: goto 5600
+5660 gosub 5900
+: gosub 12500
+: co$ = "the enemy captain"
+: if ht then z = ht
+: gosub 2290
+5662 if ft = 0 then f$ = "boarding"
+: gosub 8097
+: x = 3
+: y = 1
+: ff = 36
+: gosub 8590
+: gosub 4140
+5665 k = 1
+: return
+
+#0x226E44
+5670 z =-(fn gs(36)= 2 or ft)
+: ff = 21+z
+: zz = fn ex(prs+128)
+: if zz =-1 then 5675
+5673 a = peek(pty+20+zz)and 7
+: v = 0
+: gosub 4910
+: zz = a
+: gosub 4290
+5674 gosub 2197
+: co$ = f$
+: ff = 40
+
+5675 gosub 12500
+
+5676 c1 = 6
+: gosub 5900
+: x = 1
+: y = 14
+: gosub 8590
+: if k and ft = 0 then gosub 4155
+: c1 = 4
+5677 if dd<12 and k = 0 then wa = wa+24-2*dd
+5678 if ft = 0 then gosub 7880
+5679 return
+
+#0x351101
+5680 poke 214,22
+: print
+: v = 9
+: gosub 5685
+5681 f$ = "sinking"
+: xx = 1
+: x =-19
+: y = 1
+: c1 = 14
+: c2 = 9
+: if z>= 4 then gosub 8100
+: goto 5688
+5682 poke 211,19
+: v = 57
+: gosub 5685
+5683 if z<4 then 5600
+5684 gosub 8100
+: ff = 24
+: gosub 9900
+: c1 = 5
+: goto 5676
+
+5685 z = int(fn gs(v)/16)-1
+: if z<0 then return
+
+#0x224F12
+5686 t$ = "sail damage lost a mast hull leaking"
+: t$ = mid$(t$,z*12+1,12)
+: print " " t$;
+5687 return
+
+#0x72554D
+5688 gosub 5900
+: ff = 23
+: x = 1
+: y = 14
+: gosub 8590
+: zz = 0
+: v = 0
+: gosub 4910
+5689 c = 22
+: gosub 8400
+: return
+
+#0x445D26
+5690 ff = 25
+: if ft then ff = 42
+: goto 5675
+5691 goto 5675
+5700 gosub 12500
+: k = 1
+: xx = 1
+: zz =-5
+: gosub 4300
+: ff = 26
+: goto 5676
+5710 t$ = "?raising saile"
+: if fn gs(10)= 1 then t$ = "?lowering saile"
+5715 goto 5635
+5720 v = 10
+: gosub 5739
+: goto 5635
+5730 v = 63
+: gosub 5739
+: poke 214,23
+: print
+: print,,t$;
+: goto 5600
+
+5739 t$ = "battle sails"
+: if fn gs(v)= 1 then t$ = "full sails  "
+: return
+
+#0x4C697E
+5900 poke vb+19,0
+: cx =(fn gs(58)+1)and 254
+: ln = fn gs(57)
+: xm = fn gs(32)
+: return
+
+#0x583249
+5920 for i = 1 to peek(pty+15)
+: zz = peek(pty+19+i)
+: gosub 4290
+: t$ = t$+f$+"? "
+: next i
+: return
+
+#0x25075F
+5950 sg =-1
+: gosub 8700
+: poke vb+15,0
+: sl = sgn(sl)
+: poke 198,0
+5960 f = 0
+: t =(prs+128)/kp
+: l =.5
+: gosub 12
+5970 v = 73
+: zv = df+(sk = peek(prs+23)and df>0)+dz
+: if zv>4 then zv = 4
+5980 gosub 7
+: sk = 0
+: poke s+15,99
+: poke s+18,128
+: poke 198,0
+: return
+
+#0x5A7F78
+5990 poke 816,165
+: poke 817,244
+: poke 818,237
+: poke 819,245
+: f = 232
+: t = 4
+: l = 4
+: goto 10
+
+6000 v = 1
+6010 f$ = ""
+: gosub 12900
+: c1 = 248
+: c2 = 192
+: gosub 9190
+: c1 = 252
+: c2 = 196
+: gosub 9190
+6020 v = 4
+: zv = y(0)
+: gosub 7
+: v = 56
+: zv = t(0)
+: gosub 7
+: z =(y(0)*y(1)+t(0)*t(1))/31
+6030 v = 5
+: zv = int(y(0)*y(1)/z+.5)+8
+: gosub 7
+: v = 57
+: zv = 47-zv
+: gosub 7
+6050 sk = 1
+: gosub 5950
+: dz = 0
+: v = 3
+: zv = c-2
+: gosub 7
+: v = 23
+: zv = dl
+: gosub 7
+
+6100 z = 195.75
+: gosub 12970
+6105 on peek(a0)goto 6110,6110,6110,6130
+
+6110 y(0)= fn gs(4)
+6120 v = 2-peek(a0)
+: gosub 9190
+: c1 = 248
+: c2 = 192
+: gosub 9190
+: return
+
+#0x475E79
+6130 poke 214,20
+: print
+: print "]]morale:",
+: zv = int(fn gs(57)/8)
+6140 gosub 6190
+: zv = int(fn gs(5)/8)
+: gosub 6190
+6150 goto 6100
+
+6190 print mid$("panic shakenangry firm  strongwild! wild!!",zv*6+1,6),
+: return
+
+#0x03077E
+6500 f$ = "sunsight"
+: x =-10
+: y = 6
+: c1 = 0
+: c2 = 15
+: gosub 8100
+: f$ = "sight"
+: gosub 12900
+6510 poke 214,21
+: print
+: print,"    latitude: ?? n"
+: gosub 5950
+6520 if df = 0 then print "q   dead reckoning longitude:" int(96.7-peek(pty+1)*.24)"w";
+6600 gosub 12950
+: zz = 1
+: gosub 9000
+: return
+
+#0x5D143E
+6700 f$ = "scape"
+: gosub 12900
+: gosub 5950
+: v = 23
+: zv = cp
+: gosub 7
+: gosub 12500
+: f = 15
+: t = 216
+: l = 4
+6710 gosub 12
+: f = 4
+: t = 232
+: l = 4
+: gosub 10
+: f =(dta+410)/kp
+: t =(prs+128)/kp
+: l =.1
+: gosub 10
+6712 v = 33
+: zv = ft
+: gosub 7
+: gosub 12950
+: gosub 5990
+: if ft then return
+
+#0x736966
+6715 poke 214,21
+: print
+: print "e pirate party "," defenders "
+6718 t$ = "e     men     muskets"
+: print t$;t$;
+6720 t$ = "         ter:?TTT e"
+: print t$,t$;
+6725 f$ = "battle"
+: gosub 12900
+: v = 23
+: zv = cp
+: gosub 7
+: dz = 0
+
+6730 gosub 12950
+: zz = 0
+: gosub 3980
+6740 on peek(a0)goto 6750,6760,6770,6755
+
+6750 z = 6
+
+6752 zv = int(fn gs(z)/16)
+: poke 214,22
+: print
+: poke 211,z*1.3+34
+: gosub 6190
+: goto 6730
+6755 z = 21
+: goto 6752
+6760 v = 1
+
+6765 wa = wa+fn gs(7)/99
+: gosub 12500
+: if v = 0 then x = 3
+: y = 3
+: ff = 62
+: gosub 8590
+6767 return
+
+#0x385644
+6770 v = 0
+: goto 6765
+
+7000 f$ = "ship&s log"
+: rr = 1
+
+7010 x = 0
+: y = 0
+: dx = 39
+: dy = 24
+: gosub 30
+: print "s","q*** " f$ " ***"
+7020 k = peek(lg)-21
+: if k<0 then k =-1
+: goto 7060
+
+7030 a = lg+k*4+1
+: z = fn dp(a)
+: i = peek(a+2)
+: j = 1-2*((i>9)and(i<20))
+7031 if((j and rr)= 0)or((z>tv and j = 3))then 7060
+7035 z = z-360*int(z/360)
+: zz = int(z/30)
+7040 gosub 1099
+: print "]?" t$;
+7045 z =(z-zz*30+1)
+: print z;
+: poke 211,8
+: print "??-";
+7048 z = peek(a+2)
+: on int((z-1)/10)goto 7052,7053
+7050 on z gosub 7110,7120,7130,7140,7150,7160,7162,7164,7170,7180
+: goto 7060
+
+7052 on z-10 gosub 7190,7200,7210,7220,7230,7240,7255,7250,7260,7270
+: goto 7060
+7053 on z-20 gosub 7280,7300,7310,7320,7330,7340
+: goto 7060
+
+7060 k = k+1
+: if k<peek(lg)then 7030
+7070 print,"... the end ...";
+: gosub 2990
+7090 return
+
+#0x500B4B
+7110 print "visited";
+
+7115 a = cty+(peek(a+3)and 63)*cln
+: gosub 2950
+: print " " c$ "."
+: return
+
+#0x638044
+7120 z = int(peek(a+3)/64)
+: gosub 2195
+7125 print "titled as a " co$;f$ "?" rk$(peek(a+3)and 63)"."
+: return
+
+#0x7C7606
+7130 print "plundered";
+: goto 7115
+
+7140 print "captured a ";
+
+7145 z = int(peek(a+3)/16)
+: gosub 2195
+: print co$;f$;"?";
+7146 zz = peek(a+3)and 15
+: gosub 4290
+: print "?" f$
+: return
+
+#0x066125
+7150 print "sank a ";
+: goto 7145
+
+7160 print "engaged a ";
+: goto 7145
+
+7164 print "found buried treasure!"
+: return
+
+#0x022C48
+7170 z = peek(tr+24+4*8+int(peek(a+3)/64)*8+1)
+: gosub 2290
+7171 print "??????? " co$ " in";
+: goto 7115
+
+7180 zz = peek(a+3)
+: gosub 7245
+: print "offers pirate amnesty!"
+: return
+
+#0x441C81
+7190 print "indians attack";
+: goto 7115
+
+7200 print "new gold mine at";
+: goto 7115
+
+7210 print "malaria strikes";
+: goto 7115
+
+7220 print "new governor in";
+: goto 7115
+
+7230 print "pirates plunder";
+: goto 7115
+
+7240 zz = peek(a+3)
+: gosub 7245
+: print "at war with ";
+: gosub 7245
+: print "?."
+: return
+
+#0x020A44
+7245 f$ = mid$("?spain  ?england?france ?holland?pirate ",(zz and 3)*8+1,8)
+7246 gosub 2197
+7247 print f$ "?";
+: zz = int(zz/4)
+: return
+
+#0x0A5710
+7250 zz = peek(a+3)
+: gosub 7245
+: print "allies with ";
+: gosub 7245
+: print "?."
+: return
+
+#0x546804
+7255 zz = peek(a+3)
+: gosub 7245
+: print "and ";
+: gosub 7245
+: print "make peace."
+: return
+
+#0x410A18
+7260 zz = peek(peek(a+3)*cln+cty+3)
+: gosub 7245
+: print "captures";
+: goto 7115
+
+7270 print "treasure fleet in";
+: goto 7115
+
+7280 print "silver train in";
+: goto 7115
+
+7320 print "captured the treasure fleet"
+: return
+
+#0x19615B
+7330 print "captured the silver train"
+: return
+
+#0x4D4952
+7340 z = peek(a+3)
+: gosub 8430
+: print "rescued my ";t$
+: return
+
+#0x4C4E40
+7880 c2 = peek(sa)+peek(sa+1)*16
+: goto 7900
+
+7890 c2 =(cp-cty)/cln
+
+7900 aa = peek(lg)
+: if aa>= 62 then t = lg/kp
+: f = t+.5
+: l =.5
+: gosub 10
+: aa = aa-32
+7910 poke lg,aa+1
+: aa = lg+1+aa*4
+: poke aa+2,c1
+: poke aa+3,c2
+7920 c1 = day+360*yr
+: poke aa,fn lb(c1)
+: poke aa+1,c1/kp
+: return
+
+#0x0E4F45
+7999 x = 20-int(len(t$)/2)
+: y = 20
+: gosub 8005
+: for i = 0 to 200
+: next i
+: return
+
+#0x065633
+8000 c = 0
+: goto 8009
+
+8005 c = 1
+
+8009 if sg>= 0 then gosub 8700
+8010 ax = prs+131
+: poke ax-1,0
+: poke vb+15,1
+: t$ = "?"+t$
+: sys wn+12
+: xl = peek(ax-2)
+: dx = xl+2
+8015 n = peek(ax-3)
+: dy = n+1
+: co = 2+6*rnd(0)
+: if abs(aa-tr)<= 16 then co = 7
+8016 if(dx+x)>39 then dx = 39-x
+8017 if(dy+y)>24 then dy = 24-y
+8020 gosub 30
+: poke sp,176
+: z = ax+peek(ax-1)
+8030 poke 214,y
+: print "q";
+: for i = ax+n to ax+1 step-1
+: poke 211,x+1
+: if z = i then print "?";
+8040 print mid$(t$,peek(i)+2,peek(i-1)-peek(i))
+8045 next i
+: print "?";
+: if c then return
+
+#0x68753A
+8050 if peek(vb+18)or peek(vb+14)then 8050
+8055 z = n-z+ax
+: poke vb+16,x*4+7
+: poke vb+17,(y+z)*8+60
+: poke 53269,1
+: if z>= n then 2990
+
+8060 c = int(peek(vb+17)/8)-7-y
+: if c<z then c = z
+8070 if c>= n then c = n-1
+8071 l = peek(216*kp+(y+c)*40+x+42)and 15
+: poke a0,x+1
+: poke a1,y+c+1
+: poke a2,0
+: sys wn+15
+8072 gosub 8090
+: if peek(vb+14)then poke vb+16,0
+: poke a2,6*sgn(l)
+: sys wn+15
+: return
+
+#0x535B1A
+8074 poke a2,l
+: sys wn+15
+: gosub 8090
+: goto 8060
+8080 poke vb+16,0
+: poke 53269,0
+: return
+
+#0x00233C
+8090 for i = 0 to 20
+: if peek(vb+14)then i = 999
+8091 next i
+: return
+
+#0x410153
+8095 x = 1
+: y = 1
+: goto 8099
+8096 x = 17
+: y = 1
+: goto 8099
+
+8097 x = 1
+: y = 9
+: goto 8099
+
+8098 x = 17
+: y = 9
+
+8099 c1 = 0
+: c2 = 10
+: xx = xx+1
+
+8100 f = 236
+: if x>0 and rnd(0)>px then rd = 0
+: return
+
+#0x595B70
+8110 t = 161
+: l = 2
+: gosub 10
+: f$ = f$+".win"
+: bf = 232*kp
+: gosub 17800
+: if xx then gosub 12500
+: xx = 0
+8115 z = abs(x)+y*40+41
+: rr = 216*kp+z
+: z = peek(648)*kp+z
+8120 poke a0,abs(x)
+: poke a1,y
+: poke a2,19-18*(x =-1)
+: poke a3,15
+: poke a4,0
+: sys wn
+8130 poke 53282,c1
+: poke 53283,c2
+: f = 232
+: t = 228
+: l = 6
+: gosub 10
+: f = 161
+: t = 236
+: l = 2
+: gosub 10
+
+8140 poke a0,fn lb(z)
+: poke a1,z/kp
+: poke a2,fn lb(rr)
+: poke a3,rr/kp
+: sys wn+9
+8145 if rd then poke a0,rd
+: poke a1,rnd(0)*6+10
+: sys wn+18
+: rd = 0
+8150 if x =-1 then x = 0
+: z = z+18
+: rr = rr+18
+: goto 8140
+8160 px =.7-df*.15
+: return
+
+#0x1C7B0C
+8180 gosub 9900
+: gosub 9900
+: sg = 2
+: poke cp,peek(cp)or 128
+8181 xx = 1
+: x =-11
+: y = 9
+: f$ = "happy"
+: rd = 14
+: gosub 8099
+: x = 2
+: y = 1
+: ff = 52
+: gosub 8590
+8182 x = 12
+: y = 4
+: z = int((wa-12)/15)
+: if z>2 then z = 2
+8183 if z>-1 then co$ = mid$("somemuchmost",z*4+1,4)
+: ff = 41
+: gosub 8590
+8190 gosub 2250
+: for i = 1 to 4
+: t(i)= int(rnd(0)*peek(cp+8))-50*(i = 0)
+: p(i)= 0
+: next i
+: f$ = c$
+8191 p(0)= 0
+: t(0)= int(peek(cp+7)*1500/(15+wa))
+: for k = 1 to 2
+: if cc<>peek(pr-k)then 8194
+8192 poke pr-k,255
+: c1 = 23+k
+: gosub 7900
+: x = 8
+: y = 10
+: ff = 49+k
+: gosub 8590
+8193 t(0)= t(0)+20*peek(dta+kp+20*7+5)
+: poke prs+26+k,16
+
+8194 next k
+: poke cp+7,fn rg(peek(cp+7)-t(0)/50)
+: poke cp+8,fn rg(peek(cp+8)-20)
+8195 c =-nn-8
+: gosub 8400
+: if t(0)>99 then gosub 8400
+: gosub 8400
+: c = 4
+: gosub 8400
+: gosub 8400
+8196 poke cp+9,(peek(cp+9)-3)and 255
+: if me<peek(cp+6)*10*(1+rnd(0))then 8199
+8197 x = 3
+: y = 3
+: ff = 39
+: gosub 8590
+: poke cp+3,c-5
+: poke cp+9,2
+: poke cp+11,rnd(0)*16
+8198 if c-5<>nn then poke pr+3+c,(peek(pr+3+c)+3)and 255
+: c =-nn-8
+: gosub 8400
+: gosub 8400
+
+8199 t(4)= 6*peek(cp+4)
+: c1 = 3
+: gosub 7890
+: t$ = "town"
+: goto 8210
+8200 gosub 12500
+
+8210 zz =(p(0)<>0 or t(0)= 0)
+: poke sp,176
+: x = 1
+: y =-zz
+: dx = 37
+: dy = 11+zz
+: co = 4*p(0)
+: gosub 30
+8212 f$ = ""
+: gosub 12900
+: poke 53269,1
+8220 poke 214,1
+: print
+: print,na$," " t$,
+: co$ = "e"
+: if p(0)then print " price"
+: co$ = "?"
+8225 poke 214,8
+: print
+: print "]]  use joystick to transfer cargo,"
+: poke vb+17,107
+8226 print "]]  press trigger when done."
+8227 if zz = 0 then print "sq?",t(0)"?0 gold pcs. plundered!"
+: zz =-t(0)
+: gosub 3990
+: t(0)= 0
+8230 poke 214,2
+: print
+: print "]]?gold","??      " p$,co$ "?     " p$
+: t$ = "     tons"
+8235 print "]]?food",t$,t$,co$;p(1)p$
+8236 print "]]?goods",t$,t$,co$;p(2)p$
+8240 print "]]?" x$,t$,t$,co$;p(3)p$
+8245 print "]]?cannon",,,co$;p(4)p$
+8246 print "]]?space in hold:?";t$
+: if cx<0 then cx = cx+kk
+8250 gosub 5950
+: v = 7
+: zv = t(0)
+: gosub 7
+8255 for i = 1 to 4
+: v = 11+i
+: zv = t(i)
+: gosub 7
+: v = 15+i
+: zv = p(i)
+: gosub 7
+8260 next i
+: v = 26
+: zv = va
+: gosub 7
+: poke vb+15,1
+8270 z = 181.5
+: gosub 12970
+: poke 53269,0
+: return
+
+#0x5B6042
+8290 y(0)= 1
+: y(1)= 9
+: t(0)= 1
+: t(1)= 9
+: dl = 1
+: goto 8305
+
+8300 dl = 0
+
+8305 gosub 12500
+: x =-1
+: y = 2
+: c1 = 11
+: c2 = 9
+: gosub 8100
+: f$ = t$
+8308 x = 23
+: y = 17
+: t$ = "which weapoNwill you use? rapieR longsworD cutlasS"
+: gosub 8000
+8310 t$ = f$
+: poke a0,1
+: poke a1,18
+: poke a2,30
+: poke a3,4
+: poke a4,2
+: sys wn
+8315 co$ = ""
+: f$ = ""
+: if len(t$)<12 and dl = 0 then z = nn
+: gosub 2195
+8320 print "sq",na$ " vs. " co$;f$;"?";t$
+: if len(t$)>10 then t$ = "enemy"
+8330 poke 214,18
+: print
+: print,t$,na$
+: print "]]force:","   men","   men"
+8350 gosub 6000
+: gosub 12500
+: x = 2
+: y = 2
+8388 if v<>1 and dl then ff = 32
+: gosub 8590
+: poke prs+4,255
+: goto 8393
+8389 if v =-1 then 8395
+8392 if dl = 0 then zz = y(0)-me
+: gosub 3980
+
+8393 poke sp,176
+: return
+
+#0x137C2F
+8395 c = 22
+: gosub 8400
+: x =-2
+: y = 9
+: xx = 1
+: c1 = 0
+: c2 = 12
+: f$ = "prison"
+: gosub 8100
+: x = 1
+: y = 1
+8396 a = cp
+: gosub 2950
+: a$ = c$
+: ff = 33
+: if nn<>peek(cp+3)or cc>nc then c$ = "the ship"
+8397 gosub 8595
+: f$ = "island"
+8398 if c$ = a$ then gosub 12900
+: gosub 5950
+: v = 23
+: zv = cp
+: gosub 7
+: gosub 12950
+: sl = fn gs(3)
+8399 c$ = a$
+: gosub 4990
+: ff = 3
+: x = 6
+: y = 10
+: gosub 8590
+: v = 0
+: return
+
+#0x655473
+8400 poke prs+abs(c),(peek(prs+abs(c))+sgn(c))and 255
+8404 c1 = abs(c)-8
+: a = prs+64+c1*4
+: if c1<0 or c1>3 then return
+
+#0x56233A
+8406 for i = 0 to 3
+: poke prs+8+i,(peek(prs+8+i)+sgn(c)*sgn(fn ex(a+i))and 255)
+8408 next i
+: return
+
+#0x2C7E6B
+8410 poke pty+abs(c),(peek(pty+abs(c))+sgn(c))and 255
+: return
+
+#0x4A0107
+8420 z = int(fn ex(prs+4)/4)*10+11
+: if z<1 then z = 1
+
+8421 if z>51 then z = 51
+8422 f$ = mid$("cowardly  promising well knownfamous    notorious infamous!",z,10)
+8423 gosub 2197
+: return
+
+#0x2E2A79
+8430 t$ = mid$("sisterfathermotheruncle ",z*6+1,6)
+: return
+
+#0x772E25
+8435 z = int((yr-peek(prs+19)+peek(prs+22))/(3-(peek(prs+23)= 4)))
+: if z>4 then z = 4
+8436 t$ = mid$("finegoodfairpoorpoor",z*4+1,4)
+: return
+
+#0x5F3518
+8440 z = int(fn ex(pty+17)/4)+1
+: if z>3 then z = 3
+
+8441 if z<0 then z = 0
+8442 f$ = mid$("angry  unhappypleasedhappy  ",z*7+1,7)
+: return
+
+#0x50716A
+8445 f$ = mid$("apprenticejourneymanadventurerswashbcklr",df*10+1,10)
+: return
+
+#0x1D5F7B
+8450 y(0)= me
+: y(1)= y(1)+fn ex(pty+17)/2
+: return
+
+#0x5E805D
+8500 t$ = "not enough crew?one ship lost?"
+: x = 10
+: y = 6
+: if ll and 1 then return
+
+#0x796B73
+8505 if peek(pty+15)*8>me then zz = peek(pty+15)-1
+: gosub 8000
+: gosub 4905
+: goto 8500
+8520 gosub 8580
+: if z>= 0 then return
+
+#0x6C1857
+8530 gosub 12500
+: t$ = "too much cargo?"
+: gosub 7999
+8540 t$ = "overboard"
+: for i = 0 to 4
+: t(i)= 0
+: p(i)= 0
+: next i
+: gosub 8210
+: goto 8500
+
+8580 z = int(peek(pty+5)/2)
+: for i = 9 to 11
+: z = z+peek(pty+i)
+: next i
+8585 z = peek(pty+14)*10-z
+: return
+
+#0x418073
+8590 gosub 8600
+: t$ = t$+"?"
+: gosub 8000
+: return
+
+#0x524755
+8595 gosub 8600
+: t$ = t$+"?"
+: gosub 8005
+: return
+
+#0x566733
+8600 t$ = ""
+
+8610 rr = peek(53269)
+: poke 53269,0
+: open 15,8,15
+: open 5,8,5,"#"
+8615 print# 15,"b-r:";5;0;int(ff/21)+1;ff-int(ff/21)*21
+
+8620 input# 5,f$
+: if f$ = "co$" then t$ = t$+co$
+: goto 8620
+8622 if f$ = "c$" then t$ = t$+c$
+: goto 8620
+8625 z = len(f$)
+: if f$ = "zz" then t$ = t$+mid$(str$(zz),2)+" "
+: goto 8620
+8626 if f$ = "zz0" then t$ = t$+mid$(str$(zz),2)+"0 "
+: goto 8620
+8630 if st = 0 then t$ = t$+left$(f$,z-1)+chr$(asc(mid$(f$,z))+128)
+: goto 8620
+8640 t$ = t$+f$
+: close 5
+: close 15
+: poke 53269,rr
+: return
+
+#0x3D1F4B
+8700 sg = 4*kp+abs(sg)*100+2*(sg<0)
+8710 poke a0,fn lb(sg)
+: poke a1,sg/kp
+: poke a3,32
+8720 poke s+3,2
+: poke s+10,2
+: poke s+17,2
+: poke a4,9
+: poke a5,10
+: sys vb+9
+: sg =-1
+: return
+
+#0x346003
+9000 cx = day
+: day = day+zz
+: if int(cx/30)= int(day/30)then return
+
+#0x731835
+9020 for mn = int(cx/30)+1 to int(day/30)
+: gosub 9100
+: gosub 9180
+: if ll then 9030
+9022 if fn ex(pty+17)>-4 then 9028
+9025 x = 4
+: y = 4
+: gosub 12500
+: ff = 29
+: gosub 8590
+: zz =-me/3
+: gosub 3975
+: dz = 1
+9026 f$ = "deck"
+: t$ = "mutineer"
+: gosub 8290
+: poke prs+7,(peek(prs+7)-4)and 255
+: goto 9030
+
+9028 if fn ex(pty+17)<0 then gosub 12500
+: ff = 27
+: gosub 8590
+
+9030 mt =-1
+: vv = vv*(ll and 2)/2
+: next mn
+: if day>= 360 then day = day-360
+: yr = yr+1
+9040 mn = int(day/30)
+: return
+
+#0x17161C
+9100 zz = mn
+: gosub 1099
+9104 t$ = t$+str$(1560+sn*20+yr+int(mn/12))+"?"
+9106 x = 9
+: y = 9
+: gosub 8005
+: zz = peek(prs+5)/2
+: gosub 3995
+9110 f$ = ""
+: gosub 12900
+: gosub 5950
+: v = 19
+: zv = mn
+: gosub 7
+: v = 22
+: zv = nc
+: gosub 7
+9120 z = 183
+: gosub 12970
+9130 for i = prs+128 to prs+136 step 2
+: c1 = peek(i)
+: if c1 then c2 = peek(i+1)
+: gosub 7900
+9140 next i
+: return
+
+#0x795419
+9180 z = 2*sqr(fn dp(pty+7)/fn dp(pty+3))
+9185 poke pty+17,(z-fn ex(prs+7)+4-df)and 255
+: return
+
+#0x7F030E
+9190 f = c1
+: t = 232
+: l = 4
+: gosub 10
+: f = c2
+: t = c1
+: gosub 10
+: f = 232
+: t = c2
+: gosub 10
+: return
+
+#0x4B0314
+9250 aa = tr+24+4*8
+: if peek(aa+24)then return
+
+#0x6A7881
+9270 gosub 9300
+: poke aa+2,6
+: z = peek(prs+6)
+: gosub 8430
+: a$ = c$
+: c$ = t$
+9280 f$ = "spaniard"
+: gosub 3391
+: x = 2
+: y = 2
+: ff = 12
+: gosub 8590
+9285 c1 = 9
+: c2 = zz+(aa-tr-56)*8
+: gosub 7900
+9290 a = zz*cln+cty
+: gosub 2950
+: ff = 0
+: x = 1
+: y = 10
+: gosub 8590
+: c$ = a$
+: return
+
+#0x096B28
+9300 if peek(aa)then aa = aa+8
+: goto 9300
+
+9310 zz = int(rnd(0)*nc+1)
+: if peek(cty+zz*cln+3)then 9310
+9320 poke aa,1
+: poke aa+3,zz
+: for i = aa+4 to aa+7
+: poke i,0
+: next i
+9330 z = rnd(0)*32
+: poke aa+1,z
+: gosub 2290
+: return
+
+#0x794875
+9900 poke cp+8,fn rg(peek(cp+8)-10)
+: return
+
+#0x311042
+9950 poke cp+8,fn rg(peek(cp+8)+10)
+: return
+
+#0x35431C
+12000 s = 54272
+: poke s+18,129
+: sys vb
+12040 sx = 53248
+: sy = sx+1
+: sc = 53287
+: sp = 204*kp+1016
+: return
+
+#0x150B7E
+12500 poke vb+13,0
+: poke 648,204
+: poke 53272,48+8
+12510 poke 53269,0
+: poke 53271,0
+: poke 53277,0
+: poke 53276,0
+: poke 53270,24
+: poke 53265,27
+12515 print "??";
+: poke 53280,14
+: poke 53281,1
+: poke 53282,0
+: mo = 1
+12520 return
+
+#0x282B4D
+12900 f = 0
+: t = va/kp
+: l =.5
+: gosub 12
+
+12910 if f$ = sd$ or f$ = "" then t =(va+160)/kp
+: l = 4-160/kp
+: gosub 12
+: return
+
+#0x7C6531
+12920 sd$ = f$
+: f$ = f$+".sid"
+: bf = 173.5*kp
+
+12930 gosub 17800
+: if(st and 191)<>0 then 12930
+12940 f$ = ""
+: goto 12910
+
+12950 poke a0,128
+: poke a1,173
+: sys var-24
+: return
+
+#0x1D1C56
+12970 poke a0,fn lb(z*kp)
+: poke a1,z
+: sys var-24
+: return
+
+#0x506D3D
+17700 poke 53269,0
+: sys vb+3
+: gosub 41
+: open 15,8,15,"i"
+: print# 15,"s0:"+f$
+: close 15
+17705 gosub 19520
+: poke 251,fn lb(bf)
+: poke 252,bf/kp
+: poke a1,fn lb(bf+ln)
+17710 poke a2,(bf+ln)/kp
+: poke a0,251
+: poke a4,216
+: poke a5,255
+: sys ke
+17720 gosub 40
+: sys vb
+: return
+
+#0x716E09
+17800 rr = 0
+
+17805 sys vb+3
+: gosub 41
+: gosub 19520
+17806 rr = peek(53269)
+: poke 53269,0
+: poke a1,fn lb(bf)
+: poke a2,bf/kp
+17810 poke a0,0
+: poke a4,213
+: poke a5,255
+: sys ke
+: poke 53269,rr
+: gosub 40
+: sys vb
+: return
+
+#0x1D4317
+17900 rr = 255
+: goto 17805
+
+19000 def fn dp(x)= peek(x)+256*peek(x+1)
+: def fn gs(x)= peek(va+2*x)+kp*peek(va+2*x+1)
+19001 def fn lb(x)=(x-32768)and 255
+: def fn ex(x)= peek(x)+256*(peek(x)>127)
+19002 def fn rg(x)=-x*(x>= 0 and x<256)-255*(x>255)
+19003 a0 = 165
+: a1 = a0+1
+: a2 = a1+1
+: a3 = a2+1
+: a4 = a3+1
+: a5 = a4+1
+: a6 = a5+1
+: kp = 256
+: kk = kp*kp
+19004 k = 149*kp
+: sb = k+41
+: mvb = k+70
+: ke = k+142
+: s64k = k+29
+: m64k = k+20
+19010 var = 159*kp
+: return
+
+#0x185B6E
+19520 for i = 0 to len(f$)-1
+: poke 830+i,asc(mid$(f$,i+1,1))
+: next i
+19526 poke a0,0
+: poke a1,8
+: poke a2,1
+: poke a4,186
+: poke a5,255
+: sys ke
+19528 poke a0,len(f$)
+: poke a1,62
+: poke a2,3
+: poke a4,189
+: poke a5,255
+: sys ke
+: return
+
+#0x040357
+21000 gosub 12500
+: t$ = "game disk side 1"
+: gosub 2490
+: if a$<>"1" then 21000
+21900 poke prs+21,yr
+: print "??qqeload " chr$(34)"life" chr$(34)",8,1qqqqqrun"
+21910 sys vb+3
+: print,"?one moment please...se";
+21920 gosub 41
+: poke 631,13
+: poke 632,13
+: poke 198,3
+: new
