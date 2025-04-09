@@ -7,6 +7,14 @@ The project has no commercial purpose, the findings will be shared on open platf
 
 
 # tools
-To analyse c64 pirates basic code see tool 1 (FlowGen):
+
+## Tool 1: FlowGen
+To analyse c64 pirates basic code see FlowGen:
 
 https://github.com/ref-xx/BasicFlowgen
+
+
+## Tool 2: PirateView
+To analyze and view datafiles contained in the c64 disk images
+
+https://github.com/ref-xx/PiratesDataExplorer
