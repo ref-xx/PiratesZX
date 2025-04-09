@@ -18,3 +18,9 @@ https://github.com/ref-xx/BasicFlowgen
 To analyze and view datafiles contained in the c64 disk images
 
 https://github.com/ref-xx/PiratesDataExplorer
+
+
+## Tool 3: Patched version of Commodore Basic Formatter
+This is used to create primary form of basic code to generate easily readable basic code
+
+https://github.com/ref-xx/CommodoreBasicReformatter
