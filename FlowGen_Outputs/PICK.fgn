@@ -1,6 +1,8 @@
 #0x000000
 0 rem pirat
+#"No 64ksupport file on the disks"
 1 if peek(38181)<>133 then load "64ksupport",8,1
+#""
 4 poke 52,142
 : poke 56,142
 : clr
@@ -726,8 +728,9 @@
 3900 a$ = mid$("?spanish??english??french???dutch???",k*9+1,9)
 : return
 
-#0x7F004A
+#0x7F004A@┌%Set Default Variables
 5950 z =-1
+#@│
 : gosub 8700
 : v = 64
 : zv = dta
@@ -783,10 +786,12 @@
 : for i = 0 to 100
 : if peek(54299)= z then next i
 : goto 6000
+#@└
 5996 return
 
-#0x670318
+#0x0080FF@┌%RandomSID Check
 6000 t$ = "the random number generatoRin this computer (sid chip -?"
+#@│
 6010 t$ = t$+"osc. 3) is not functioninGcorrectly.  program will noT"
 6020 t$ = t$+"work unless this is repaired?"
 6030 gosub 12500
@@ -794,9 +799,10 @@
 : x = 3
 : y = 6
 : gosub 8000
+#@└
 : return
 
-#0x3B6613
+#0x3B6613@%
 7999 x = 20-int(len(t$)/2)
 : y = 20
 

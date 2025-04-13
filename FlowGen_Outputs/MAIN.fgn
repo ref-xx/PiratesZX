@@ -71,8 +71,9 @@
 : poke 792,71
 : return
 
-#0x217A03
+#0x217A03@┌%Setup Constants
 50 vb = 150*kp
+#@│
 : wn = 153.5*kp
 : cty = 143*kp
 : cln = 24
@@ -84,7 +85,9 @@
 : so = 158*kp
 : lg = 147*kp
 : dta = 6*kp
+#@└
 : sg =-1
+#@%
 60 open 8,8,8,"0:names"+str$(peek(prs+29))+",s,r"
 : for i = 0 to 15
 : input# 8,na$(i)
@@ -875,14 +878,19 @@
 3339 gosub 8500
 : goto 2999
 
+#@┌%Governor Menu Open
 3340 ax = 0
+#@│
 : vv = vv or 1
+#"filename:governor.win"
 : f$ = "governor"
+#""
 : rd = 14
 : gosub 8098
 3341 gosub 2295
 : t$ = "%my dear "+co$+"?"
 : v = 0
+#0x0000FF
 : for i = 0 to 3
 3342 a = prs+64+nn*4+i
 : if peek(a)then z = i
@@ -893,14 +901,18 @@
 3344 if peek(a)= 255 then t$ = t$+"?we are at waRwith the "+f$
 : v = v or 2
 3345 next i
+#0x122A4F
 : if(v and 2)= 0 or fn ex(prs+8+nn)<2 then t$ = t$+".?"
 : goto 3347
+#@└
 3346 t$ = t$+"??i charge you to seeKout and destroy ouRenemy&s ships and towns!?"
 
+#@%
 3347 if v then x = 2
 : y = 2
 : gosub 8000
 3348 gosub 2250
+#0x0000FF
 3350 for k = 88 to 95
 : z = peek(tr+k)
 : if z<128 or int(z/32)-4<>nn then 3354
@@ -914,6 +926,7 @@
 : gosub 8590
 
 3354 next k
+#0x122A4F
 : a = pr+13+nn
 : z = peek(a)+1
 : ln = fn ex(a-5)-int(z^2+2)
@@ -3090,11 +3103,18 @@
 17900 rr = 255
 : goto 17805
 
+
+#0x8000FF@┌%DoublePeek(Address)
 19000 def fn dp(x)= peek(x)+256*peek(x+1)
+#%GetShort(VariableIndex)
 : def fn gs(x)= peek(va+2*x)+kp*peek(va+2*x+1)
+#%GetLowByte(16bitValue)
 19001 def fn lb(x)=(x-32768)and 255
+#%SignedPeek(Address)
 : def fn ex(x)= peek(x)+256*(peek(x)>127)
+#%RangeClamp(-255,0)
 19002 def fn rg(x)=-x*(x>= 0 and x<256)-255*(x>255)
+#0x1D4317@%
 19003 a0 = 165
 : a1 = a0+1
 : a2 = a1+1
@@ -3102,15 +3122,22 @@
 : a4 = a3+1
 : a5 = a4+1
 : a6 = a5+1
+#0xFF0000
 : kp = 256
+#0x1D4317
 : kk = kp*kp
 19004 k = 149*kp
 : sb = k+41
+#%Aka. mv
 : mvb = k+70
+#@┌%Aka. kernel
 : ke = k+142
+#@%
 : s64k = k+29
 : m64k = k+20
+#@┌%aka. va
 19010 var = 159*kp
+#@%
 : return
 
 #0x185B6E

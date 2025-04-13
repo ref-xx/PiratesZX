@@ -96,12 +96,16 @@
 : x = 5
 : y = 7
 59 gosub 8005
+#@┌%EndStatusGraphicsData
 60 nn =-1
 
+#@│
 61 nn = nn+1
 : read na$(nn),n1(nn),n2(nn),n3(nn)
 : if nn<>23 then 61
+#"DATA Player Level, Face Sprite X, Face Sprite Y, Face#"
 100 data king&s advis or,269,81,4
+#""
 101 data govern or,233,67,3
 102 data lt.govern or,254,63,0
 103 data fleet admiral,249,70,0
@@ -124,7 +128,9 @@
 120 data rogue,219,72,5
 121 data scoundrel,263,75,5
 122 data pauper,247,58,8
+#@└
 123 data beggar,253,71,2
+#@%
 150 for i = 0 to 5
 : rk(i)= 0
 : next i
@@ -308,34 +314,54 @@
 : next i
 1450 print
 : print,"�pirate points:" pt "�/100s";
+#0x0080FF@┌%PrepareSprites"set color to invisible"
 1455 poke 53271,0
+#@│"set to high res,mono"
 : poke 53277,0
+#"Sprite MSB= x  < 256"
 : poke 53264,0
+#"Unscaled Sprites"
 : poke 53276,0
+#"Set Sprite Colors for Faces"
 1460 poke sc+7,1
+#""
 : poke sc+6,10
 : poke sc+5,2
+#@└
 : poke sc+4,0
+#0x0080C0@┌%SetSpritePos(n1,n2)"Positions acquired from Data set on line 100"
 1465 for i = 4 to 7
+#@│""
 : poke sx+i+i,fn lb(n1(wh))
 : poke sy+i+i,n2(wh)
 : poke sp+i,7-i
 : next i
 1470 poke 53264,0
+#@└"Set MSB of Sprite Register"
 : if n1(wh)>255 then poke 53264,240
+#0x746452@┌%LoadFace(n3,49152)""
 1475 f$ = "face"+str$(n3(wh))
+#@│
 : bf = 192*kp
+#@└
 : gosub 17800
+#@┌%LoadWindowImage(wh)
 1480 x = 20
+#@│
 : y = 0
 : f$ = "chr"+str$(wh)
 : c1 = 0
 : c2 = 10
+#@└
 : gosub 8100
+#@┌%EnableSprite"EnableSprite 4,5,6,7"
 : poke 53269,240
+#@│%PlayMusic 3""
 : z = 3
+#@└%PlayMusic
 : gosub 8700
 
+#@%
 1500 z = int(rnd(0)*6)*4
 : poke sp+7,z
 : poke sp+6,z+1
@@ -558,6 +584,7 @@
 : y = 13
 : gosub 8000
 2500 return
+
 : t$ = "your career prospects�"
 
 #0x025B3E
@@ -829,8 +856,9 @@
 : close 8
 : return
 
-#0x24146D
+#0x24146D@┌%PlayMusic(Address Z)
 8700 z = 4*kp+abs(z)*100+2*(z<0)
+#@│
 : rem music(z)
 8710 poke a0,fn lb(z)
 : poke a1,z/kp
@@ -843,9 +871,10 @@
 : poke a4,9
 : poke a5,10
 : sys vb+9
+#@└
 : return
 
-#0x7C4D31
+#0x7C4D31@%
 12000 rem set up
 12010 poke 56578,peek(56578)or 3
 : poke 56576,(peek(56576)and 252)or 0
@@ -932,8 +961,9 @@
 : print "��"
 : return
 
-#0x125105
+#0xFF0000@┌%LoadFile(Filename f$,Addr(bf))
 17800 rr = 0
+#@│
 : rem load file
 
 17805 sys vb+3
@@ -947,9 +977,10 @@
 : sys kernel
 17820 gosub 40
 : sys vb
+#@└
 : return
 
-#0x332E05
+#0x332E05@%
 17900 rr = 255
 : goto 17805
 
